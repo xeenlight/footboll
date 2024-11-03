@@ -3,6 +3,8 @@ import { StyledRegisterModal, ModalOverlay } from "./RegisterModal.style";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch } from "react-redux";
+import { register } from '../../Store/Api/userSlice';
 
 interface IRegisterForm {
   username: string; 
@@ -10,7 +12,6 @@ interface IRegisterForm {
   userpassword: string;
 }
 
-// Функция для создания схемы валидации
 const RegisterFormScheme = (existingUsers) => yup.object({
   username: yup
     .string()
@@ -35,6 +36,7 @@ interface RegisterModalProps {
 }
 
 export const RegisterModal = ({ onClose, onRegisterSuccess }: RegisterModalProps) => {
+  const dispatch = useDispatch();
   const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
 
   const {
@@ -46,12 +48,8 @@ export const RegisterModal = ({ onClose, onRegisterSuccess }: RegisterModalProps
   });
 
   const onRegisterSubmit = (data: IRegisterForm) => {
-    // Добавляем нового пользователя в массив
-    existingUsers.push(data);
-    localStorage.setItem('users', JSON.stringify(existingUsers));
-
-    console.log(existingUsers);
-    onRegisterSuccess(data); // Передаем данные о новом пользователе
+    dispatch(register(data));
+    onRegisterSuccess(data);
     onClose();
   };
 

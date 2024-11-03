@@ -3,6 +3,8 @@ import { StyledLoginModal, ModalOverlay } from "./LoginModal.style";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch } from "react-redux";
+import { login } from '../../Store/Api/userSlice';
 
 interface ILoginForm {
   useremail: string;
@@ -26,10 +28,11 @@ interface LoginModalProps {
 }
 
 export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
+  const dispatch = useDispatch();
   const {
     control,
     handleSubmit,
-    setError, // Используем для установки ошибок
+    setError,
     formState: { errors },
   } = useForm<ILoginForm>({
     resolver: yupResolver(loginFormScheme),
@@ -41,18 +44,17 @@ export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
 
     if (!user) {
       setError("useremail", { type: "manual", message: "Эта почта не зарегистрирована" });
-      return; // Прерываем выполнение, если почта не найдена
+      return;
     }
 
     if (user.userpassword !== data.userpassword) {
       setError("userpassword", { type: "manual", message: "Неверный пароль" });
-      return; // Прерываем выполнение, если пароль неверный
+      return;
     }
 
-    // Сохраняем текущего пользователя
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    onLoginSuccess(user); // Вызываем функцию для обновления состояния в родительском компоненте
-    onClose(); // Закрываем модальное окно
+    dispatch(login(user));
+    onLoginSuccess(user);
+    onClose();
   };
 
   return (
@@ -74,7 +76,6 @@ export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
               />
             )}
           />
-
           <Controller
             name="userpassword"
             control={control}
@@ -88,7 +89,6 @@ export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
               />
             )}
           />
-
           <button type="submit">Login</button>
         </form>
       </StyledLoginModal>
