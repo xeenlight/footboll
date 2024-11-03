@@ -12,7 +12,7 @@ interface IRegisterForm {
   userpassword: string;
 }
 
-const RegisterFormScheme = (existingUsers) => yup.object({
+const RegisterFormScheme = (existingUsers: any[]) => yup.object({
   username: yup
     .string()
     .required("Обязательное поле")

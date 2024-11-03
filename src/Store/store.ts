@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './Api/userSlice';
+import userReducer, { checkUser } from './Api/userSlice'; // Убедись, что checkUser импортируется
 
 const store = configureStore({
     reducer: {
@@ -7,4 +7,5 @@ const store = configureStore({
     },
 });
 
+export { checkUser }; // Добавь этот экспорт, если его нет
 export default store;

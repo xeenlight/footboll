@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { login } from '../../Store/Api/userSlice';
 
+
 interface ILoginForm {
   useremail: string;
   userpassword: string;
@@ -40,7 +41,7 @@ export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
 
   const onLoginSubmit = (data: ILoginForm) => {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const user = users.find(user => user.useremail === data.useremail);
+    const user = users.find((user: { useremail: string; }) => user.useremail === data.useremail);
 
     if (!user) {
       setError("useremail", { type: "manual", message: "Эта почта не зарегистрирована" });
@@ -52,9 +53,11 @@ export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
       return;
     }
 
-    dispatch(login(user));
-    onLoginSuccess(user);
-    onClose();
+    // Сохраняем текущего пользователя
+    localStorage.setItem('currentUser', JSON.stringify(user)); 
+    dispatch(login(user)); // Обновляем состояние пользователя в Redux
+    onLoginSuccess(user); // Вызываем функцию для обновления состояния в родительском компоненте
+    onClose(); // Закрываем модальное окно
   };
 
   return (
