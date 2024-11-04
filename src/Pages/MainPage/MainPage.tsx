@@ -1,76 +1,59 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { Header } from "../../Components/Header/Header";
 import { StyledMainPage } from "./MainPage.style";
 
-interface Area {
-  id: number;
-  name: string;
-  code: string;
-  flag: string | null;
-  parentAreaId: number | null;
-  parentArea: string | null;
-  childAreas: ChildArea[];
-}
-
-interface ChildArea {
-  id: number;
-  name: string;
-  countryCode: string;
-  flag: string | null;
-  parentAreaId: number;
-  parentArea: string;
-}
-
 export const MainPage = () => {
-  const [area, setArea] = useState<Area | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [leagues, setLeagues] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const API_KEY = 'ad7c3083e6155a3ef810eb4d8d9edd69';
+  const API_URL = 'https://thingproxy.freeboard.io/fetch/https://v3.football.api-sports.io/leagues';
 
   useEffect(() => {
-    const fetchArea = async () => {
+    const fetchLeagues = async () => {
       try {
-        const response = await fetch("https://cors-anywhere.herokuapp.com/http://api.football-data.org/v4/areas/", {
-          method: "GET",
+        const response = await fetch(API_URL, {
+          method: 'GET',
           headers: {
-            "X-Auth-Token": "494e431e8bb14822bd60d706d0355379",
-          },
+            'x-apisports-key': API_KEY,
+            'Content-Type': 'application/json'
+          }
         });
 
         if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
+          throw new Error('Network response was not ok');
         }
 
         const data = await response.json();
-        setArea(data);
-      } catch (err) {
-        setError(err.message);
+        setLeagues(data.response);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchArea();
+    fetchLeagues();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <Header />
       <StyledMainPage>
-        {loading && <p>Loading...</p>}
-        {error && <p>Error: {error}</p>}
-        {area && (
-          <div>
-            <h2>{area.name} (ID: {area.id})</h2>
-            <h3>Child Areas:</h3>
-            <ul>
-              {area.childAreas.map((child) => (
-                <li key={child.id}>
-                  {child.name} - {child.countryCode} {child.flag && <img src={child.flag} alt={`${child.name} flag`} />}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <h1>Football Leagues</h1>
+        <ul>
+          {leagues.map((league) => (
+            <li key={league.league.id}>
+              <img src={league.league.logo} alt={`${league.league.name} logo`} />
+              <h2>{league.league.name}</h2>
+              <p>Type: {league.league.type}</p>
+              <p>Country: {league.country.name}</p>
+            </li>
+          ))}
+        </ul>
       </StyledMainPage>
     </>
   );

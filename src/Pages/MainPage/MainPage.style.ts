@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const StyledMainPage = styled.div`
 width: 100%;
-  color: grey;
-  h1{
+  color: red;
+  p{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    font-size: 40px;
   }
 `;
