@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MainPage } from "./Pages/MainPage/MainPage";
-import { LoginPage } from "./Pages/LoginPage/LoginPage";
+import { MatchPage } from "./Pages/MatchPage/MatchPage";
+import { CompetitionsPage } from "./Pages/CompetitionsPage/CompetitionsPage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkUser } from './Store/store';
+import { StatsPage } from "./Pages/StatsPage/StatsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,11 +17,19 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <MainPage />,
+      element: <MatchPage />,
     },
     {
       path: "/2",
-      element: <LoginPage />,
+      element: <MainPage />,
+    },
+    {
+      path: "/3",
+      element: <CompetitionsPage />,
+    },
+    {
+      path: "/4",
+      element: <StatsPage />,
     },
   ]);
 

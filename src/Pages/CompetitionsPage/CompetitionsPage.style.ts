@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledMainPage = styled.div`
+export const StyledCompetitionsPage = styled.div`
   width: 100%;
   display: block;
   text-align: center;

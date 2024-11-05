@@ -6,6 +6,8 @@ export const MainPage = () => {
   const [areas, setAreas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  console.log(areas);
+  
 
   useEffect(() => {
     const fetchAreas = async () => {

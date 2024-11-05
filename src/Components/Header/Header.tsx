@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { StyledHeader } from "./Headerstyle";
-import { LoginModal } from "../LoginModal/LoginModal"; 
-import { RegisterModal } from "../RegisterModal/RegisterModal"; 
+import { LoginModal } from "../LoginModal/LoginModal";
+import { RegisterModal } from "../RegisterModal/RegisterModal";
 
 export const Header = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
@@ -9,7 +9,7 @@ export const Header = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const savedUserData = localStorage.getItem('currentUser');
+    const savedUserData = localStorage.getItem("currentUser");
     if (savedUserData) {
       setUserData(JSON.parse(savedUserData));
     }
@@ -24,7 +24,7 @@ export const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem("currentUser");
     setUserData(null);
   };
 
@@ -35,7 +35,7 @@ export const Header = () => {
   const closeRegisterModal = (newUserData) => {
     setRegisterModalOpen(false);
     if (newUserData) {
-      localStorage.setItem('currentUser', JSON.stringify(newUserData));
+      localStorage.setItem("currentUser", JSON.stringify(newUserData));
       setUserData(newUserData);
     }
   };
@@ -47,24 +47,52 @@ export const Header = () => {
   return (
     <StyledHeader>
       <h1>Football Stats</h1>
+      <nav className="menu">
+        <ul>
+          <li>
+            <a href="/">Match</a>
+          </li>
+          <li>
+            <a href="2">Area</a>
+          </li>
+          <li>
+            <a href="3">Competitions</a>
+          </li>
+          <li>
+            <a href="4">Stats</a>
+          </li>
+        </ul>
+      </nav>
       <div className="Buttons">
         {userData ? (
           <>
             <div className="Login">{userData.username}</div>
-            <div className="Register" onClick={handleLogout}>Exit</div>
+            <div className="Register" onClick={handleLogout}>
+              Exit
+            </div>
           </>
         ) : (
           <>
-            <div className="Login" onClick={handleLoginClick}>Login</div>
-            <div className="Register" onClick={handleRegisterClick}>Register</div>
+            <div className="Login" onClick={handleLoginClick}>
+              Login
+            </div>
+            <div className="Register" onClick={handleRegisterClick}>
+              Register
+            </div>
           </>
         )}
       </div>
       {isLoginModalOpen && (
-        <LoginModal onClose={closeLoginModal} onLoginSuccess={handleLoginSuccess} />
+        <LoginModal
+          onClose={closeLoginModal}
+          onLoginSuccess={handleLoginSuccess}
+        />
       )}
       {isRegisterModalOpen && (
-        <RegisterModal onClose={() => closeRegisterModal(null)} onRegisterSuccess={newUserData => closeRegisterModal(newUserData)} />
+        <RegisterModal
+          onClose={() => closeRegisterModal(null)}
+          onRegisterSuccess={(newUserData) => closeRegisterModal(newUserData)}
+        />
       )}
     </StyledHeader>
   );
