@@ -1,56 +1,49 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import { Header } from "../../Components/Header/Header";
 import { StyledMainPage } from "./MainPage.style";
 
 export const MainPage = () => {
-  const [leagues, setLeagues] = useState([]);
+  const [areas, setAreas] = useState([]);
   const [loading, setLoading] = useState(true);
-  const API_KEY = 'ad7c3083e6155a3ef810eb4d8d9edd69';
-  const API_URL = 'https://thingproxy.freeboard.io/fetch/https://v3.football.api-sports.io/leagues';
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchLeagues = async () => {
+    const fetchAreas = async () => {
       try {
-        const response = await fetch(API_URL, {
-          method: 'GET',
+        const response = await fetch("https://thingproxy.freeboard.io/fetch/http://api.football-data.org/v4/areas/", {
           headers: {
-            'x-apisports-key': API_KEY,
-            'Content-Type': 'application/json'
+            "X-Auth-Token": "494e431e8bb14822bd60d706d0355379"
           }
         });
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
         const data = await response.json();
-        setLeagues(data.response);
+        setAreas(data.areas);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchLeagues();
+    fetchAreas();
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <StyledMainPage>Loading...</StyledMainPage>;
+  }
+
+  if (error) {
+    return <StyledMainPage>Error: {error}</StyledMainPage>;
   }
 
   return (
     <>
       <Header />
       <StyledMainPage>
-        <h1>Football Leagues</h1>
+        <h1>Areas</h1>
         <ul>
-          {leagues.map((league) => (
-            <li key={league.league.id}>
-              <img src={league.league.logo} alt={`${league.league.name} logo`} />
-              <h2>{league.league.name}</h2>
-              <p>Type: {league.league.type}</p>
-              <p>Country: {league.country.name}</p>
+          {areas.map(area => (
+            <li key={area.id}>
+              {area.name} - {area.parentArea}
             </li>
           ))}
         </ul>
