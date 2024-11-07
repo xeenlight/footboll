@@ -6,6 +6,8 @@ export const MatchPage = () => {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filter, setFilter] = useState(""); // Состояние для выбранного фильтра
+  const [filteredMatches, setFilteredMatches] = useState([]); // Отфильтрованные матчи
   console.log(matches);
 
   useEffect(() => {
@@ -26,6 +28,7 @@ export const MatchPage = () => {
 
         const data = await response.json();
         setMatches(data.matches);
+        setFilteredMatches(data.matches); // Сразу сохраняем все матчи
       } catch (error) {
         setError(error.message);
       } finally {
@@ -36,21 +39,52 @@ export const MatchPage = () => {
     fetchMatches();
   }, []);
 
-  const handleMouseEnter = (homeImgUrl, awayImgUrl) => {
-    // Убираем старое фоновое изображение (если оно было установлено)
-    document.body.style.backgroundImage = `url(${homeImgUrl}), url(${awayImgUrl})`;
-    document.body.style.backgroundSize = "400px";  // Размер изображений
-    document.body.style.backgroundPosition = "left center, right center"; // Позиционируем изображения по центру экрана
-    document.body.style.backgroundRepeat = "no-repeat"; // Не повторяем изображения
-  
-    // Фиксируем изображения по центру экрана с использованием fixed
-    document.body.style.position = 'relative';  // Убираем фиксированные блокировки на заднем фоне
-    
-    // Сделаем картинки фиксированными и разместим их по центру экрана
-    document.body.style.backgroundAttachment = "fixed";  // Для фоновых картинок не прокручиваться
-    document.body.style.transition = "background-size 1s ease, background-position 1s ease"; // Плавное изменение фона
+  // Функция для фильтрации матчей по статусу
+  const filterMatches = (status) => {
+    // Если на кнопку фильтрации кликнули повторно, сбрасываем фильтр
+    if (filter === status) {
+      setFilter(""); // Сброс фильтра
+      setFilteredMatches(matches); // Показываем все матчи
+    } else {
+      setFilter(status); // Устанавливаем новый фильтр
+      let filtered;
+      if (status === "in-play") {
+        filtered = matches.filter((match) => match.status === "IN_PLAY");
+      } else if (status === "soon") {
+        filtered = matches.filter((match) => match.status === "TIMED");
+      } else if (status === "finished") {
+        filtered = matches.filter(
+          (match) =>
+            match.status === "FINISHED" && match.score?.winner !== "DRAW"
+        );
+      } else if (status === "draw") {
+        filtered = matches.filter(
+          (match) =>
+            match.status === "FINISHED" && match.score?.winner === "DRAW"
+        );
+      } else if (status === "paused") {
+        filtered = matches.filter((match) => match.status === "PAUSED");
+      }
+      setFilteredMatches(filtered); // Применяем фильтрацию
+    }
   };
-  
+
+  // Обработчики для кнопок
+  const handleButtonClick = (status) => {
+    filterMatches(status);
+  };
+
+  // Логика для изменения фона
+  const handleMouseEnter = (homeImgUrl, awayImgUrl) => {
+    document.body.style.backgroundImage = `url(${homeImgUrl}), url(${awayImgUrl})`;
+    document.body.style.backgroundSize = "400px";
+    document.body.style.backgroundPosition = "left center, right center";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.position = "relative";
+    document.body.style.backgroundAttachment = "fixed";
+    document.body.style.transition =
+      "background-size 1s ease, background-position 1s ease";
+  };
 
   const handleMouseLeave = () => {
     document.body.style.backgroundImage = "";
@@ -69,8 +103,43 @@ export const MatchPage = () => {
       <Header />
       <StyledMatchPage>
         <h1>Matches</h1>
+
+        <div className="filter-buttons">
+          <button
+            onClick={() => handleButtonClick("in-play")}
+            className={filter === "in-play" ? "active" : ""}
+          >
+            In live
+          </button>
+          <button
+            onClick={() => handleButtonClick("finished")}
+            className={filter === "finished" ? "active" : ""}
+          >
+            Finished
+          </button>
+          <button
+            onClick={() => handleButtonClick("draw")}
+            className={filter === "draw" ? "active" : ""}
+          >
+            Draw
+          </button>
+          <button
+            onClick={() => handleButtonClick("paused")}
+            className={filter === "paused" ? "active" : ""}
+          >
+            Pause
+          </button>
+          <button
+            onClick={() => handleButtonClick("soon")}
+            className={filter === "soon" ? "active" : ""}
+          >
+            Soon
+          </button>
+        </div>
+
+        {/* Список матчей */}
         <ul>
-          {matches.map((match) => {
+          {filteredMatches.map((match) => {
             const winnerClass =
               match.score?.winner === "HOME_TEAM"
                 ? "finished-home"
@@ -100,16 +169,13 @@ export const MatchPage = () => {
                 onMouseLeave={handleMouseLeave}
                 className={`match-item ${statusClass}`}
               >
-                <div className="MatchVS">
-                  <div>
-                    <div className="homeTeam">
-                      <img
-                        src={match.homeTeam.crest}
-                        alt={`${match.homeTeam.name} crest`}
-                      />
-                      <h2>{match.homeTeam.name}</h2>
-                    </div>
-                    <h4>{match.score?.fullTime.home ?? "N/A"}</h4>
+                <div className= {`MatchVS ${statusClass}`}>
+                  <div className="homeTeam">
+                    <img
+                      src={match.homeTeam.crest}
+                      alt={`${match.homeTeam.name} crest`}
+                    />
+                    <h2>{match.homeTeam.name}</h2>
                   </div>
 
                   <div className="VS">
@@ -117,15 +183,20 @@ export const MatchPage = () => {
                     <p>{new Date(match.utcDate).toLocaleString()}</p>
                   </div>
 
-                  <div>
-                    <div className="awayTeam">
-                      <h2>{match.awayTeam.name}</h2>
-                      <img
-                        src={match.awayTeam.crest}
-                        alt={`${match.awayTeam.name} crest`}
-                      />
-                    </div>
-                    <h4>{match.score?.fullTime.away ?? "N/A"}</h4>
+                  <div className="awayTeam">
+                    <h2>{match.awayTeam.name}</h2>
+                    <img
+                      src={match.awayTeam.crest}
+                      alt={`${match.awayTeam.name} crest`}
+                    />
+                  </div>
+                </div>
+                <div className="score-container">
+                  <div className="score home-score">
+                    {match.score?.fullTime.home ?? "N/A"}
+                  </div>
+                  <div className="score away-score">
+                    {match.score?.fullTime.away ?? "N/A"}
                   </div>
                 </div>
               </li>
