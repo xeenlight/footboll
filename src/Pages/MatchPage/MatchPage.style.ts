@@ -59,7 +59,7 @@ export const StyledMatchPage = styled.div`
 
   .match-item {
     width: 750px;
-    padding: 10px;
+    padding: 0 0 10px;
     display: flex;
     flex-wrap: wrap;
     text-align: center;
@@ -69,45 +69,65 @@ export const StyledMatchPage = styled.div`
     font-size: 30px;
     border-radius: 20px;
     transition: transform 0.3s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень для визуального отделения */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Легкая тень для визуального отделения */
   }
 
   .match-item:hover {
     transform: scale(1.05);
   }
-
+  .MatchVS {
+    width: 750px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border-radius: 20px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Легкая тень для визуального отделения */
+  }
   /* Для матча в процессе (IN_PLAY) */
-  .match-item.in-play {
-    background-color: rgba(0, 255, 60, 0.5);  /* Зеленый фон с прозрачностью */
+  .MatchVS.in-play {
+    background-color: rgba(0, 255, 60, 0.5); /* Зеленый фон с прозрачностью */
   }
 
   /* Для матча, который еще не начался (TIMED) */
-  .match-item.timed {
-    background-color: rgba(128, 128, 128, 0.5);  /* Серый фон для TIMED */
+  .MatchVS.timed {
+    background-color: rgba(128, 128, 128, 0.5); /* Серый фон для TIMED */
   }
 
-  .match-item.paused {
-    background-color: rgba(0, 128, 255, 0.5); 
+  .MatchVS.paused {
+    background-color: rgba(0, 128, 255, 0.5);
   }
 
   /* Для завершенного матча, если ничья */
-  .match-item.finished-draw {
+  .MatchVS.finished-draw {
     background-color: rgba(128, 128, 128, 0.5); /* Серый фон для ничьей */
   }
 
   /* Для завершенного матча, если выиграл домашний */
-  .match-item.finished-home {
-    background-image: linear-gradient(to left, rgba(255, 0, 0, 0.5), rgba(0, 255, 60, 0.5));
+  .MatchVS.finished-home {
+    background-image: linear-gradient(
+      to left,
+      rgba(255, 0, 0, 0.5),
+      rgba(0, 255, 60, 0.5)
+    );
   }
 
   /* Для завершенного матча, если выиграл гость */
-  .match-item.finished-away {
-    background-image: linear-gradient(to right, rgba(255, 0, 0, 0.5), rgba(0, 255, 60, 0.5));
+  .MatchVS.finished-away {
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 0, 0, 0.5),
+      rgba(0, 255, 60, 0.5)
+    );
   }
 
   /* Для остальных состояний (по умолчанию) */
-  .match-item.default {
-    background-color: wheat;  /* Стандартный цвет фона */
+  .MatchVS.default {
+    background-color: wheat; /* Стандартный цвет фона */
   }
 
   /* Стиль для блока с матчами */
@@ -160,41 +180,104 @@ export const StyledMatchPage = styled.div`
   }
 
 
-  .score-container {
-    width: 100%;
-  display: flex;
-  justify-content: space-evenly; 
-  align-items: center;
 
+
+  /* Основной контейнер для счета */
+.score-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   font-size: 30px;
   font-weight: bold;
   margin-top: 10px;
+  gap: 10px;
+  position: relative;
 }
 
+/* Контейнеры для половинного и полного времени */
+.halfTimeContainer,
+.fullTimeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-  .score {
-    padding: 5px 110px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 5px;
-    min-width: 50px;
-    text-align: center;
-  }
+/* Заголовки h5 скрыты по умолчанию */
+h5 {
+  margin: 0;
+  opacity: 0; /* Скрываем заголовок по умолчанию */
+  height: 0; /* Скрываем заголовок */
+  transition: opacity 0.3s ease, height 0.3s ease; /* Плавное скрытие */
+}
 
-  .home-score {
-    background-color: rgba(255, 0, 0, 0.7);  /* Красный для домашней команды */
-    color: white;
-  }
+/* При наведении на родительский элемент li заголовок становится видимым */
+.match-item:hover .halfTimeContainer h5,
+.match-item:hover .fullTimeContainer h5 {
+  opacity: 1; /* Заголовок появляется */
+  height: auto; /* Восстанавливаем высоту */
+  transition: opacity 0.3s ease, height 0s 0s; /* Плавное восстановление */
+}
 
-  .away-score {
-    background-color: #28a745;  /* Синий для выездной команды */
-    color: white;
-  }
+/* Половина времени скрыта по умолчанию */
+.halfTime {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  max-height: 0; /* Скрываем блоки по умолчанию */
+  overflow: hidden; /* Скрываем контент */
+  transition: max-height 0.1s ease-out; /* Плавное раскрытие */
+}
 
-  .score-divider {
-    font-size: 35px;
-    font-weight: bold;
-  }
+/* Полное время всегда видно */
+.fullTime {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  /* Блок fullTime не скрывается */
+}
+
+/* При наведении на родительский элемент li, раскрывается блок halfTime */
+.match-item:hover .halfTime {
+  max-height: 100px; /* Раскрытие блока Half time */
+}
+
+/* Стиль для элементов счета */
+.score {
+  padding: 5px 110px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.home-score {
+  background-color: #007bff; /* Красный для домашней команды */
+  color: white;
+}
+
+.away-score {
+  background-color: #007bff; /* Синий для выездной команды */
+  color: white;
+}
+
+.score-divider {
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/* Контейнер для каждого матча */
+.match-item {
+  list-style-type: none;
+  transition: transform 0.3s ease;
+}
+
+.match-item:hover {
+  transform: scale(1.02); /* Легкий эффект при наведении на весь элемент */
+}
 
   .VS {
     font-size: 30px;

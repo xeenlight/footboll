@@ -169,7 +169,7 @@ export const MatchPage = () => {
                 onMouseLeave={handleMouseLeave}
                 className={`match-item ${statusClass}`}
               >
-                <div className= {`MatchVS ${statusClass}`}>
+                <div className={`MatchVS ${statusClass}`}>
                   <div className="homeTeam">
                     <img
                       src={match.homeTeam.crest}
@@ -191,12 +191,30 @@ export const MatchPage = () => {
                     />
                   </div>
                 </div>
+
                 <div className="score-container">
-                  <div className="score home-score">
-                    {match.score?.fullTime.home ?? "N/A"}
+                  <div className="halfTimeContainer">
+                    <h5>Half time</h5>
+                    <div className="halfTime">
+                      <div className="score home-score">
+                        {match.score?.halfTime.home ?? "N/A"}
+                      </div>
+                      <div className="score away-score">
+                        {match.score?.halfTime.away ?? "N/A"}
+                      </div>
+                    </div>
                   </div>
-                  <div className="score away-score">
-                    {match.score?.fullTime.away ?? "N/A"}
+
+                  <div className="fullTimeContainer">
+                    <h5>Full time</h5>
+                    <div className="fullTime">
+                      <div className="score home-score">
+                        {match.score?.fullTime.home ?? "N/A"}
+                      </div>
+                      <div className="score away-score">
+                        {match.score?.fullTime.away ?? "N/A"}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </li>
