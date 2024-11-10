@@ -6,6 +6,8 @@ export const CompetitionsPage = () => {
   const [competitions, setCompetitions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  console.log(competitions);
+  
 
   useEffect(() => {
     // Функция для загрузки турниров и лиг

@@ -6,6 +6,7 @@ export const StyledMainPage = styled.div`
   text-align: center;
   align-items: center;
   justify-content: center;
+
   ul{
     display: flex;
     flex-direction: column;

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { Header } from "../../Components/Header/Header";
 import { StyledMatchPage } from "./MatchPage.style";
+import { Footer } from "../../Components/Footer/Footer";
 
 export const MatchPage = () => {
   const [matches, setMatches] = useState([]);
@@ -40,7 +41,7 @@ export const MatchPage = () => {
   }, []);
 
   // Функция для фильтрации матчей по статусу
-  const filterMatches = (status) => {
+  const filterMatches = (status: SetStateAction<string>) => {
     // Если на кнопку фильтрации кликнули повторно, сбрасываем фильтр
     if (filter === status) {
       setFilter(""); // Сброс фильтра
@@ -64,18 +65,20 @@ export const MatchPage = () => {
         );
       } else if (status === "paused") {
         filtered = matches.filter((match) => match.status === "PAUSED");
+      }else if (status === "postponed") {
+        filtered = matches.filter((match) => match.status === "POSTPONED");
       }
       setFilteredMatches(filtered); // Применяем фильтрацию
     }
   };
 
   // Обработчики для кнопок
-  const handleButtonClick = (status) => {
+  const handleButtonClick = (status: string) => {
     filterMatches(status);
   };
 
   // Логика для изменения фона
-  const handleMouseEnter = (homeImgUrl, awayImgUrl) => {
+  const handleMouseEnter = (homeImgUrl: any, awayImgUrl: any) => {
     document.body.style.backgroundImage = `url(${homeImgUrl}), url(${awayImgUrl})`;
     document.body.style.backgroundSize = "400px";
     document.body.style.backgroundPosition = "left center, right center";
@@ -135,9 +138,16 @@ export const MatchPage = () => {
           >
             Soon
           </button>
+          <button
+            onClick={() => handleButtonClick("postponed")}
+            className={filter === "postponed" ? "active" : ""}
+          >
+            Postponed
+          </button>
+          
         </div>
 
-        {/* Список матчей */}
+
         <ul>
           {filteredMatches.map((match) => {
             const winnerClass =
@@ -158,6 +168,8 @@ export const MatchPage = () => {
                 ? winnerClass
                 : match.status === "PAUSED"
                 ? "paused"
+                : match.status === "POSTPONED"
+                ? "postponed"
                 : "default";
 
             return (
@@ -222,6 +234,7 @@ export const MatchPage = () => {
           })}
         </ul>
       </StyledMatchPage>
+      <Footer />
     </>
   );
 };
