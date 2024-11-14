@@ -1,26 +1,26 @@
 import { Input } from "../Input/Input";
-import { StyledLoginModal, ModalOverlay } from "./LoginModal.style"; 
+import { StyledLoginModal, ModalOverlay } from "./LoginModal.style";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { login } from '../../Store/Api/userSlice';
 
-
 interface ILoginForm {
   useremail: string;
   userpassword: string;
 }
 
+// Валидация формы с использованием yup
 const loginFormScheme = yup.object({
   useremail: yup
     .string()
-    .required("Обязательное поле")
-    .email("Введите корректно свою почту"),
+    .required("Required field")
+    .email("Enter your email correctly"),
   userpassword: yup
     .string()
-    .required("Обязательное поле")
-    .min(6, "Пароль должен содержать более 6 цифр"),
+    .required("Required field")
+    .min(6, "Password must contain more than 6 characters"),
 });
 
 interface LoginModalProps {
@@ -30,6 +30,7 @@ interface LoginModalProps {
 
 export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
   const dispatch = useDispatch();
+
   const {
     control,
     handleSubmit,
@@ -41,23 +42,34 @@ export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
 
   const onLoginSubmit = (data: ILoginForm) => {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const user = users.find((user: { useremail: string; }) => user.useremail === data.useremail);
+    const user = users.find((user: { useremail: string }) => user.useremail === data.useremail);
 
+    // Если пользователь не найден
     if (!user) {
-      setError("useremail", { type: "manual", message: "Эта почта не зарегистрирована" });
+      setError("useremail", { type: "manual", message: "This email is not registered" });
       return;
     }
 
+    // Если пароль неверный
     if (user.userpassword !== data.userpassword) {
-      setError("userpassword", { type: "manual", message: "Неверный пароль" });
+      setError("userpassword", { type: "manual", message: "Wrong password" });
       return;
     }
 
-    // Сохраняем текущего пользователя
-    localStorage.setItem('currentUser', JSON.stringify(user)); 
-    dispatch(login(user)); // Обновляем состояние пользователя в Redux
-    onLoginSuccess(user); // Вызываем функцию для обновления состояния в родительском компоненте
-    onClose(); // Закрываем модальное окно
+    // Сохраняем текущего пользователя в localStorage
+    localStorage.setItem('currentUser', JSON.stringify(user));
+
+    // Обновляем состояние в Redux (если используется Redux для глобального состояния)
+    dispatch(login(user));
+
+    // Вызываем onLoginSuccess для обновления состояния в родительском компоненте (Header)
+    onLoginSuccess(user);
+
+    // Закрываем модальное окно после успешного логина
+    onClose();
+
+    // Перезагружаем страницу после успешной авторизации
+    window.location.reload();
   };
 
   return (
@@ -72,7 +84,7 @@ export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
             render={({ field }) => (
               <Input
                 type="email"
-                placeholder="Ваша почта"
+                placeholder="Your mail"
                 errorText={errors.useremail?.message}
                 isError={!!errors.useremail}
                 {...field}
@@ -85,7 +97,7 @@ export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
             render={({ field }) => (
               <Input
                 type="password"
-                placeholder="Пароль"
+                placeholder="Password"
                 errorText={errors.userpassword?.message}
                 isError={!!errors.userpassword}
                 {...field}

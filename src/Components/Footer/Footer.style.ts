@@ -1,30 +1,51 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+
 
 export const StyledFooter = styled.div`
-width: 100%;
-position: fixed;
-bottom: 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Градиент для фона */
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  background-color: rgb(33, 186, 69);
-  font-size: 20px;
-  font-weight: 600;
+  align-items: center;
+  gap: 20px;
   flex-wrap: wrap;
-  gap: 20px 0px;
-  a {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+
+  /* Для мобильных устройств (адаптивность) */
+  @media (max-width: 768px) {
+    flex-direction: column;
     gap: 10px;
+    text-align: center;
+  }
+
+  a {
     text-decoration: none;
+    color: #fff;
     display: flex;
     align-items: center;
-    color: #000;
+    gap: 10px;
   }
+
   img {
     width: 35px;
+    height: auto;
+    filter: brightness(0) invert(1)
   }
+
   .infoRight {
     display: flex;
+    gap: 20px;
     flex-wrap: wrap;
-    gap: 20px 50px;
+    justify-content: flex-end;
   }
 `;
+

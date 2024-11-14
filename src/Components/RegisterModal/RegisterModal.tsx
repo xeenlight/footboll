@@ -15,19 +15,19 @@ interface IRegisterForm {
 const RegisterFormScheme = (existingUsers: any[]) => yup.object({
   username: yup
     .string()
-    .required("Обязательное поле")
-    .min(1, "Введите своё Имя"),
+    .required("Required field")
+    .min(1, "Enter your Name"),
   useremail: yup
     .string()
-    .required("Обязательное поле")
-    .email("Введите корректно свою почту")
-    .test('unique', 'Пользователь с таким email уже зарегистрирован', (value) => {
+    .required("Required field")
+    .email("Enter your email correctly")
+    .test('unique', 'A user with this email address is already registered', (value) => {
       return !existingUsers.some(user => user.useremail === value);
     }),
   userpassword: yup
     .string()
-    .required("Обязательное поле")
-    .min(6, "Пароль должен содержать более 6 цифр"),
+    .required("Required field")
+    .min(6, "Password must contain more than 6 characters"),
 });
 
 interface RegisterModalProps {
@@ -65,7 +65,7 @@ export const RegisterModal = ({ onClose, onRegisterSuccess }: RegisterModalProps
             render={({ field }) => (
               <Input
                 type="text"
-                placeholder="Ваше Имя"
+                placeholder="Your Name"
                 errorText={errors.username?.message}
                 isError={!!errors.username}
                 {...field}
@@ -78,7 +78,7 @@ export const RegisterModal = ({ onClose, onRegisterSuccess }: RegisterModalProps
             render={({ field }) => (
               <Input
                 type="email"
-                placeholder="Ваша почта"
+                placeholder="Your mail"
                 errorText={errors.useremail?.message}
                 isError={!!errors.useremail}
                 {...field}
@@ -91,7 +91,7 @@ export const RegisterModal = ({ onClose, onRegisterSuccess }: RegisterModalProps
             render={({ field }) => (
               <Input
                 type="password"
-                placeholder="Пароль"
+                placeholder="Password"
                 errorText={errors.userpassword?.message}
                 isError={!!errors.userpassword}
                 {...field}

@@ -10,12 +10,13 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     height: 100%; /* Растягиваем body на всю высоту экрана */
-    background-color: RGB(239, 238, 239);
+    background-color: #2421c3a3;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
     display: flex;
     flex-direction: column;
+
   }
 
   #root {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { StyledHeader } from "./Headerstyle";
+import { StyledHeader } from "./Header.style";
 import { LoginModal } from "../LoginModal/LoginModal";
 import { RegisterModal } from "../RegisterModal/RegisterModal";
 
@@ -26,6 +26,7 @@ export const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
     setUserData(null);
+    window.location.reload(); // Перезагружаем страницу
   };
 
   const closeLoginModal = () => {
@@ -53,14 +54,14 @@ export const Header = () => {
             <a href="/">Match</a>
           </li>
           <li>
-            <a href="2">Area</a>
+            <a href="5">Save match</a>
           </li>
-          <li>
+          {/* <li>
             <a href="3">Competitions</a>
           </li>
           <li>
             <a href="4">Stats</a>
-          </li>
+          </li> */}
         </ul>
       </nav>
       <div className="Buttons">

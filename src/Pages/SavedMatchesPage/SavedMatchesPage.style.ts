@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-export const StyledMatchPage = styled.div`
+export const StyledSavedMatchesPage = styled.div`
   width: 100%;
   display: block;
   text-align: center;
   padding: 100px 0px;
+
 
   /* Заголовок */
   h1 {
@@ -23,7 +24,7 @@ export const StyledMatchPage = styled.div`
   .filter-buttons button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #00bcd4;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -38,7 +39,7 @@ export const StyledMatchPage = styled.div`
   }
 
   .filter-buttons button.active {
-    background-color: #ffd700;
+    background-color: #28a745;
   }
 
   .filter-buttons button:disabled {
@@ -90,19 +91,23 @@ export const StyledMatchPage = styled.div`
     transition: transform 0.3s ease-in-out;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
-  .buttonsSave{
-    width: 100%;
-  }
-  .buttonsSave button{
-    width: 100%;
-    padding: 5px ;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 5px;
-    text-align: center;
-    margin-top: 10px;
-    border: none;
-  }
+/* Стили для кнопки в .buttonsSave */
+.buttonsSave {
+  width: 100%;
+}
+
+.buttonsSave button {
+  width: 100%;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
+  border: none;
+  transition: background-color 0.3s; /* Плавный переход */
+}
+
 /* Добавляем отдельный стиль для кнопки с классом .remove-button */
 .remove-button {
   background-color: #ff0000; /* Красный цвет */
@@ -112,6 +117,8 @@ export const StyledMatchPage = styled.div`
 .remove-button:hover {
   background-color: #cc0000; /* Темный красный при наведении */
 }
+
+
   .MatchVS.in-play {
     background-color: rgba(0, 255, 60, 0.7);
   }
