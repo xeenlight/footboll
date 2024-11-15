@@ -54,14 +54,9 @@ export const Header = () => {
             <a href="/">Match</a>
           </li>
           <li>
-            <a href="5">Save match</a>
+            <a href="/100">Save match</a>
           </li>
-          {/* <li>
-            <a href="3">Competitions</a>
-          </li>
-          <li>
-            <a href="4">Stats</a>
-          </li> */}
+
         </ul>
       </nav>
       <div className="Buttons">

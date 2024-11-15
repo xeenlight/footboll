@@ -4,11 +4,11 @@ import { RootState } from '../../Store/store';
 import { saveMatch, removeMatch } from '../../Store/Api/userSlice';
 import { Header } from '../../Components/Header/Header';
 import { Footer } from '../../Components/Footer/Footer';
-import { StyledMatchPage } from './MatchPage.style';
+import { StyledMatchPage } from '../../Global.style';
 import { LoginModal } from '../../Components/LoginModal/LoginModal'; // Импортируем модальное окно
 import Loader from '../../Components/Loader/Loader';
 
-export const MatchPage = () => {
+export const PremierLeague = () => {
   const [matches, setMatches] = useState<any[]>([]);
   const [filteredMatches, setFilteredMatches] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -75,7 +75,7 @@ export const MatchPage = () => {
     const fetchMatches = async () => {
       try {
         const response = await fetch(
-          'https://thingproxy.freeboard.io/fetch/https://api.football-data.org/v4/competitions/CL/matches',
+          'https://thingproxy.freeboard.io/fetch/https://api.football-data.org/v4/competitions/PL/matches',
           {
             headers: {
               'X-Auth-Token': '494e431e8bb14822bd60d706d0355379',
@@ -131,7 +131,7 @@ export const MatchPage = () => {
     <>
       <Header />
       <StyledMatchPage>
-        <h1>Matches</h1>
+        <h1>Premier League</h1>
 
         <div className="filter-buttons">
           <button
