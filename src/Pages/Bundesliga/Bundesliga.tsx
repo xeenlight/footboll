@@ -68,7 +68,14 @@ export const Bundesliga = () => {
   };
 
   const handleMouseLeave = () => {
+    document.body.style.transition = 'none'; // Снятие переходов на время сброса
     document.body.style.backgroundImage = '';
+    document.body.style.backgroundSize = '';
+    document.body.style.backgroundPosition = '';
+    document.body.style.backgroundRepeat = '';
+    document.body.style.backgroundAttachment = '';
+    document.body.style.position = '';
+    document.body.style.transition = 'background-size 1s ease, background-position 1s ease'; // Восстановление переходов
   };
 
   useEffect(() => {
@@ -120,7 +127,7 @@ export const Bundesliga = () => {
   };
 
   if (loading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   if (error) {
@@ -230,14 +237,11 @@ export const Bundesliga = () => {
 
                   <div className="buttonsSave">
                     {isSaved ? (
-                      <button onClick={() => handleRemoveMatch(match)}
-                      className="remove-button">
+                      <button onClick={() => handleRemoveMatch(match)} className="remove-button">
                         Delete
                       </button>
                     ) : (
-                      <button onClick={() => handleSaveMatch(match)}>
-                        Save Match
-                      </button>
+                      <button onClick={() => handleSaveMatch(match)}>Save Match</button>
                     )}
                   </div>
                 </div>
@@ -275,9 +279,9 @@ export const Bundesliga = () => {
       <Footer />
 
       {isLoginModalOpen && (
-        <LoginModal 
-          onClose={() => setIsLoginModalOpen(false)} 
-          onLoginSuccess={handleLoginSuccess} 
+        <LoginModal
+          onClose={() => setIsLoginModalOpen(false)}
+          onLoginSuccess={handleLoginSuccess}
         />
       )}
     </>

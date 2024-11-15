@@ -1,50 +1,56 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../Store/store';
-import { saveMatch, removeMatch } from '../../Store/Api/userSlice';
-import { Header } from '../../Components/Header/Header';
-import { Footer } from '../../Components/Footer/Footer';
-import { StyledMatchPage } from '../../Global.style';
-import { LoginModal } from '../../Components/LoginModal/LoginModal'; // Импортируем модальное окно
-import Loader from '../../Components/Loader/Loader';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../Store/store";
+import { saveMatch, removeMatch } from "../../Store/Api/userSlice";
+import { Header } from "../../Components/Header/Header";
+import { Footer } from "../../Components/Footer/Footer";
+import { StyledMatchPage } from "../../Global.style";
+import { LoginModal } from "../../Components/LoginModal/LoginModal"; // Импортируем модальное окно
+import Loader from "../../Components/Loader/Loader";
 
 export const PrimeiraLiga = () => {
   const [matches, setMatches] = useState<any[]>([]);
   const [filteredMatches, setFilteredMatches] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [filter, setFilter] = useState<string>(''); // Состояние для выбранного фильтра
+  const [filter, setFilter] = useState<string>(""); // Состояние для выбранного фильтра
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // Состояние для модального окна
 
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
-  const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
-  const savedMatches = useSelector((state: RootState) => state.user.savedMatches);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.user.isAuthenticated
+  );
+  const savedMatches = useSelector(
+    (state: RootState) => state.user.savedMatches
+  );
 
   // Функция для фильтрации матчей по статусу
   const filterMatches = (status: string) => {
     if (filter === status) {
-      setFilter(''); // Сброс фильтра
+      setFilter(""); // Сброс фильтра
       setFilteredMatches(matches); // Показываем все матчи
     } else {
       setFilter(status); // Устанавливаем новый фильтр
       let filtered: any[] = [];
-      if (status === 'in-play') {
-        filtered = matches.filter((match) => match.status === 'IN_PLAY');
-      } else if (status === 'soon') {
-        filtered = matches.filter((match) => match.status === 'TIMED');
-      } else if (status === 'finished') {
+      if (status === "in-play") {
+        filtered = matches.filter((match) => match.status === "IN_PLAY");
+      } else if (status === "soon") {
+        filtered = matches.filter((match) => match.status === "TIMED");
+      } else if (status === "finished") {
         filtered = matches.filter(
-          (match) => match.status === 'FINISHED' && match.score?.winner !== 'DRAW'
+          (match) =>
+            match.status === "FINISHED" && match.score?.winner !== "DRAW"
         );
-      } else if (status === 'draw') {
+      } else if (status === "draw") {
         filtered = matches.filter(
-          (match) => match.status === 'FINISHED' && match.score?.winner === 'DRAW'
+          (match) =>
+            match.status === "FINISHED" && match.score?.winner === "DRAW"
         );
-      } else if (status === 'paused') {
-        filtered = matches.filter((match) => match.status === 'PAUSED');
-      } else if (status === 'postponed') {
-        filtered = matches.filter((match) => match.status === 'POSTPONED');
+      } else if (status === "paused") {
+        filtered = matches.filter((match) => match.status === "PAUSED");
+      } else if (status === "postponed") {
+        filtered = matches.filter((match) => match.status === "POSTPONED");
       }
       setFilteredMatches(filtered); // Применяем фильтрацию
     }
@@ -55,43 +61,50 @@ export const PrimeiraLiga = () => {
     filterMatches(status);
   };
 
-  // Логика для изменения фона
   const handleMouseEnter = (homeImgUrl: any, awayImgUrl: any) => {
     document.body.style.backgroundImage = `url(${homeImgUrl}), url(${awayImgUrl})`;
-    document.body.style.backgroundSize = '400px';
-    document.body.style.backgroundPosition = 'left center, right center';
-    document.body.style.backgroundRepeat = 'no-repeat';
-    document.body.style.position = 'relative';
-    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.backgroundSize = "400px";
+    document.body.style.backgroundPosition = "left center, right center";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.position = "relative";
+    document.body.style.backgroundAttachment = "fixed";
     document.body.style.transition =
-      'background-size 1s ease, background-position 1s ease';
+      "background-size 1s ease, background-position 1s ease";
   };
 
   const handleMouseLeave = () => {
-    document.body.style.backgroundImage = '';
+    document.body.style.transition = "none"; // Снятие переходов на время сброса
+    document.body.style.backgroundImage = "";
+    document.body.style.backgroundSize = "";
+    document.body.style.backgroundPosition = "";
+    document.body.style.backgroundRepeat = "";
+    document.body.style.backgroundAttachment = "";
+    document.body.style.position = "";
+    document.body.style.transition =
+      "background-size 1s ease, background-position 1s ease"; // Восстановление переходов
   };
 
   useEffect(() => {
     const fetchMatches = async () => {
       try {
         const response = await fetch(
-          'https://thingproxy.freeboard.io/fetch/https://api.football-data.org/v4/competitions/PPL/matches',
+          "https://thingproxy.freeboard.io/fetch/https://api.football-data.org/v4/competitions/PPL/matches",
           {
             headers: {
-              'X-Auth-Token': '494e431e8bb14822bd60d706d0355379',
+              "X-Auth-Token": "494e431e8bb14822bd60d706d0355379",
             },
           }
         );
 
         if (!response.ok) {
-          throw new Error('Не удалось загрузить данные');
+          throw new Error("Не удалось загрузить данные");
         }
 
         const data = await response.json();
         setMatches(data.matches);
         setFilteredMatches(data.matches); // Сразу сохраняем все матчи
       } catch (error) {
-        setError('Ошибка при загрузке матчей');
+        setError("Ошибка при загрузке матчей");
       } finally {
         setLoading(false);
       }
@@ -120,7 +133,7 @@ export const PrimeiraLiga = () => {
   };
 
   if (loading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   if (error) {
@@ -135,38 +148,38 @@ export const PrimeiraLiga = () => {
 
         <div className="filter-buttons">
           <button
-            onClick={() => handleButtonClick('in-play')}
-            className={filter === 'in-play' ? 'active' : ''}
+            onClick={() => handleButtonClick("in-play")}
+            className={filter === "in-play" ? "active" : ""}
           >
             In live
           </button>
           <button
-            onClick={() => handleButtonClick('finished')}
-            className={filter === 'finished' ? 'active' : ''}
+            onClick={() => handleButtonClick("finished")}
+            className={filter === "finished" ? "active" : ""}
           >
             Finished
           </button>
           <button
-            onClick={() => handleButtonClick('draw')}
-            className={filter === 'draw' ? 'active' : ''}
+            onClick={() => handleButtonClick("draw")}
+            className={filter === "draw" ? "active" : ""}
           >
             Draw
           </button>
           <button
-            onClick={() => handleButtonClick('paused')}
-            className={filter === 'paused' ? 'active' : ''}
+            onClick={() => handleButtonClick("paused")}
+            className={filter === "paused" ? "active" : ""}
           >
             Pause
           </button>
           <button
-            onClick={() => handleButtonClick('soon')}
-            className={filter === 'soon' ? 'active' : ''}
+            onClick={() => handleButtonClick("soon")}
+            className={filter === "soon" ? "active" : ""}
           >
             Soon
           </button>
           <button
-            onClick={() => handleButtonClick('postponed')}
-            className={filter === 'postponed' ? 'active' : ''}
+            onClick={() => handleButtonClick("postponed")}
+            className={filter === "postponed" ? "active" : ""}
           >
             Postponed
           </button>
@@ -176,26 +189,26 @@ export const PrimeiraLiga = () => {
           {filteredMatches.map((match) => {
             const isSaved = savedMatches.some((saved) => saved.id === match.id);
             const winnerClass =
-              match.score?.winner === 'HOME_TEAM'
-                ? 'finished-home'
-                : match.score?.winner === 'AWAY_TEAM'
-                ? 'finished-away'
-                : '';
+              match.score?.winner === "HOME_TEAM"
+                ? "finished-home"
+                : match.score?.winner === "AWAY_TEAM"
+                ? "finished-away"
+                : "";
 
             const statusClass =
-              match.status === 'IN_PLAY'
-                ? 'in-play'
-                : match.status === 'TIMED'
-                ? 'timed'
-                : match.status === 'FINISHED' && match.score?.winner === 'DRAW'
-                ? 'finished-draw'
-                : match.status === 'FINISHED'
+              match.status === "IN_PLAY"
+                ? "in-play"
+                : match.status === "TIMED"
+                ? "timed"
+                : match.status === "FINISHED" && match.score?.winner === "DRAW"
+                ? "finished-draw"
+                : match.status === "FINISHED"
                 ? winnerClass
-                : match.status === 'PAUSED'
-                ? 'paused'
-                : match.status === 'POSTPONED'
-                ? 'postponed'
-                : 'default';
+                : match.status === "PAUSED"
+                ? "paused"
+                : match.status === "POSTPONED"
+                ? "postponed"
+                : "default";
 
             return (
               <li
@@ -230,8 +243,10 @@ export const PrimeiraLiga = () => {
 
                   <div className="buttonsSave">
                     {isSaved ? (
-                      <button onClick={() => handleRemoveMatch(match)}
-                      className="remove-button">
+                      <button
+                        onClick={() => handleRemoveMatch(match)}
+                        className="remove-button"
+                      >
                         Delete
                       </button>
                     ) : (
@@ -247,10 +262,10 @@ export const PrimeiraLiga = () => {
                     <h5>Half time</h5>
                     <div className="halfTime">
                       <div className="score home-score">
-                        {match.score?.halfTime.home ?? 'N/A'}
+                        {match.score?.halfTime.home ?? "N/A"}
                       </div>
                       <div className="score away-score">
-                        {match.score?.halfTime.away ?? 'N/A'}
+                        {match.score?.halfTime.away ?? "N/A"}
                       </div>
                     </div>
                   </div>
@@ -259,10 +274,10 @@ export const PrimeiraLiga = () => {
                     <h5>Full time</h5>
                     <div className="fullTime">
                       <div className="score home-score">
-                        {match.score?.fullTime.home ?? 'N/A'}
+                        {match.score?.fullTime.home ?? "N/A"}
                       </div>
                       <div className="score away-score">
-                        {match.score?.fullTime.away ?? 'N/A'}
+                        {match.score?.fullTime.away ?? "N/A"}
                       </div>
                     </div>
                   </div>
@@ -275,9 +290,9 @@ export const PrimeiraLiga = () => {
       <Footer />
 
       {isLoginModalOpen && (
-        <LoginModal 
-          onClose={() => setIsLoginModalOpen(false)} 
-          onLoginSuccess={handleLoginSuccess} 
+        <LoginModal
+          onClose={() => setIsLoginModalOpen(false)}
+          onLoginSuccess={handleLoginSuccess}
         />
       )}
     </>

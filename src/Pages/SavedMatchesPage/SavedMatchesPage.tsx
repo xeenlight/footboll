@@ -3,13 +3,35 @@ import { RootState } from "../../Store/store";
 import { removeMatch } from "../../Store/Api/userSlice"; // Импортируем экшен для удаления матча
 import { Header } from "../../Components/Header/Header";
 import { Footer } from "../../Components/Footer/Footer";
-import { StyledSavedMatchesPage } from "./SavedMatchesPage.style";
+import { StyledMatchPage } from '../../Global.style';
 
 const SavedMatchesPage = () => {
   const dispatch = useDispatch();
   const savedMatches = useSelector(
     (state: RootState) => state.user.savedMatches
   );
+
+  const handleMouseEnter = (homeImgUrl: string, awayImgUrl: string) => {
+    document.body.style.backgroundImage = `url(${homeImgUrl}), url(${awayImgUrl})`;
+    document.body.style.backgroundSize = '400px';
+    document.body.style.backgroundPosition = 'left center, right center';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.position = 'relative';
+    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.transition =
+      'background-size 1s ease, background-position 1s ease';
+  };
+
+  const handleMouseLeave = () => {
+    document.body.style.transition = 'none'; // Снятие переходов на время сброса
+    document.body.style.backgroundImage = '';
+    document.body.style.backgroundSize = '';
+    document.body.style.backgroundPosition = '';
+    document.body.style.backgroundRepeat = '';
+    document.body.style.backgroundAttachment = '';
+    document.body.style.position = '';
+    document.body.style.transition = 'background-size 1s ease, background-position 1s ease'; // Восстановление переходов
+  };
 
   // Функция для удаления матча
   const handleRemoveMatch = (matchId: string) => {
@@ -19,7 +41,7 @@ const SavedMatchesPage = () => {
   return (
     <>
       <Header />
-      <StyledSavedMatchesPage>
+      <StyledMatchPage>
         <h1>Your saved matches</h1>
         <ul>
           {savedMatches.length === 0 ? (
@@ -50,7 +72,9 @@ const SavedMatchesPage = () => {
                   : "default";
 
               return (
-                <li key={match.id} className={`match-item ${statusClass}`}>
+                <li key={match.id} className={`match-item ${statusClass}`} onMouseEnter={() =>
+                  handleMouseEnter(match.homeTeam.crest, match.awayTeam.crest)
+                } onMouseLeave={handleMouseLeave}>
                   <div className={`MatchVS ${statusClass}`}>
                     <div className="homeTeam">
                       <img
@@ -113,10 +137,11 @@ const SavedMatchesPage = () => {
             })
           )}
         </ul>
-      </StyledSavedMatchesPage>
+      </StyledMatchPage>
       <Footer />
     </>
   );
 };
 
 export default SavedMatchesPage;
+ 
