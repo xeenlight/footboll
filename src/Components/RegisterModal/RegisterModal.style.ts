@@ -111,7 +111,7 @@ export const ModalOverlay = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.5); /* Затемняем фон с полупрозрачным черным */
   backdrop-filter: blur(5px); /* Эффект размытия фона */
-  z-index: 999; /* Под модальным окном */
+  z-index: 1000; /* Под модальным окном */
 
   /* Плавное появление overlay */
   animation: ${overlayFadeIn} 0.3s ease-out;

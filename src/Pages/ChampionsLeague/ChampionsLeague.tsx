@@ -15,6 +15,7 @@ export const ChampionsLeague = () => {
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>(""); // Состояние для выбранного фильтра
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // Состояние для модального окна
+console.log(matches);
 
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);

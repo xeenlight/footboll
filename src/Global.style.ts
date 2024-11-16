@@ -326,6 +326,43 @@ export const StyledMatchPage = styled.div`
     font-size: 30px;
     font-weight: bold;
   }
+  p{
+    font-size: 19px;
+    font-weight: 500;
+    color: white;
+
+  }
+  .ButtonConteiner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 100px;
+  }
+  .ButtonSaveLogin {
+    width: 350px;
+    padding: 15px;
+    background: #fff;
+    color: #2575fc;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+
+
+    &:hover {
+      background-color: #2575fc;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
 
   /* Медиазапросы для адаптивности */
   @media (max-width: 768px) {

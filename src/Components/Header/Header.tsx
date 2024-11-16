@@ -1,12 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import { StyledHeader } from "./Header.style";
 import { LoginModal } from "../LoginModal/LoginModal";
 import { RegisterModal } from "../RegisterModal/RegisterModal";
 
+// Интерфейс для данных пользователя
+interface UserData {
+  username: string;
+  // другие возможные поля
+}
+
 export const Header = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserData | null>(null); // Типизировано
 
   useEffect(() => {
     const savedUserData = localStorage.getItem("currentUser");
@@ -33,7 +39,7 @@ export const Header = () => {
     setLoginModalOpen(false);
   };
 
-  const closeRegisterModal = (newUserData) => {
+  const closeRegisterModal = (newUserData: UserData | null) => { // Типизировано
     setRegisterModalOpen(false);
     if (newUserData) {
       localStorage.setItem("currentUser", JSON.stringify(newUserData));
@@ -41,7 +47,7 @@ export const Header = () => {
     }
   };
 
-  const handleLoginSuccess = (userData) => {
+  const handleLoginSuccess = (userData: SetStateAction<UserData | null>) => { // Типизировано
     setUserData(userData);
   };
 
@@ -56,7 +62,6 @@ export const Header = () => {
           <li>
             <a href="/100">Save match</a>
           </li>
-
         </ul>
       </nav>
       <div className="Buttons">

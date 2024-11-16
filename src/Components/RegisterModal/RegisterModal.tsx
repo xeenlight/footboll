@@ -51,7 +51,9 @@ export const RegisterModal = ({ onClose, onRegisterSuccess }: RegisterModalProps
     dispatch(register(data));
     onRegisterSuccess(data);
     onClose();
+    window.location.reload();  
   };
+  
 
   return (
     <>
