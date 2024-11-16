@@ -36,4 +36,3 @@
    ```bash
    npm run dev
 
-For more information on the football-data.org API, visit the website.
