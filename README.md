@@ -25,7 +25,7 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/football-data.org.git
+   git clone https://github.com/xeenlight/footboll.git
 
 2. Install dependencies:
 
