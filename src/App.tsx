@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ChampionsLeague, MatchPage } from "./Pages/ChampionsLeague/ChampionsLeague";
+import { ChampionsLeague} from "./Pages/ChampionsLeague/ChampionsLeague";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkUser } from './Store/store';

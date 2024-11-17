@@ -13,6 +13,7 @@ export const Header = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null); // Типизировано
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Состояние для бургер-меню
 
   useEffect(() => {
     const savedUserData = localStorage.getItem("currentUser");
@@ -54,7 +55,16 @@ export const Header = () => {
   return (
     <StyledHeader>
       <h1>Football Stats</h1>
-      <nav className="menu">
+      
+      {/* Бургер-меню для мобильных */}
+      <div className="burger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <span className="burger-bar"></span>
+        <span className="burger-bar"></span>
+        <span className="burger-bar"></span>
+      </div>
+      
+      {/* Навигация */}
+      <nav className={`menu ${isMenuOpen ? "open" : ""}`}>
         <ul>
           <li>
             <a href="/">Match</a>
@@ -63,7 +73,30 @@ export const Header = () => {
             <a href="/100">Save match</a>
           </li>
         </ul>
+        
+        {/* Кнопки входа и регистрации в бургер-меню */}
+        <div className="ButtonsBurger">
+          {userData ? (
+            <>
+              <div className="Login">{userData.username}</div>
+              <div className="Register" onClick={handleLogout}>
+                Exit
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="Login" onClick={handleLoginClick}>
+                Login
+              </div>
+              <div className="Register" onClick={handleRegisterClick}>
+                Register
+              </div>
+            </>
+          )}
+        </div>
       </nav>
+      
+      {/* Кнопки входа и регистрации */}
       <div className="Buttons">
         {userData ? (
           <>
@@ -83,6 +116,7 @@ export const Header = () => {
           </>
         )}
       </div>
+      
       {isLoginModalOpen && (
         <LoginModal
           onClose={closeLoginModal}

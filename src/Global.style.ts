@@ -37,7 +37,7 @@ export const StyledMatchPage = styled.div`
   width: 100%;
   display: block;
   text-align: center;
-  padding: 100px 0px;
+  padding: calc(1.3vw + 75px) 10px calc(-5.2vw + 199px);
 
   /* Заголовок */
   h1 {
@@ -289,7 +289,7 @@ export const StyledMatchPage = styled.div`
   }
 
   .score {
-    padding: 5px 110px;
+    padding: 5px calc(3.1vw + 50px);
     font-size: 20px;
     font-weight: bold;
     border-radius: 5px;

@@ -18,13 +18,25 @@ export const StyledFooter = styled.div`
   flex-wrap: wrap;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  .infoRight {
+    display: flex;
+    gap: 20px;
 
+    align-items: center;
+  }
 
   /* Для мобильных устройств (адаптивность) */
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 10px;
     text-align: center;
+
+    .infoRight {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
   }
 
   a {
@@ -41,11 +53,6 @@ export const StyledFooter = styled.div`
     filter: brightness(0) invert(1)
   }
 
-  .infoRight {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
+
 `;
 

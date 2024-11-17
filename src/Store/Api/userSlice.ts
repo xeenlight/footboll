@@ -1,5 +1,3 @@
-// userSlice.ts
-
 import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
 
 interface User {
@@ -27,10 +25,17 @@ const userSlice = createSlice({
     register: (state, action: PayloadAction<User>) => {
       const newUser = action.payload;
       const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-      localStorage.setItem('users', JSON.stringify([...existingUsers, newUser]));
+      
+      // Добавляем нового пользователя в список существующих пользователей
+      const updatedUsers = [...existingUsers, newUser];
+      localStorage.setItem('users', JSON.stringify(updatedUsers));
+      
+      // Сохраняем нового пользователя как текущего в localStorage
+      localStorage.setItem('currentUser', JSON.stringify(newUser));
+      
       state.user = newUser;
       state.isAuthenticated = true;
-      localStorage.setItem(newUser.useremail, JSON.stringify([]));
+      state.savedMatches = []; // Можете добавить сохраненные матч и сюда, если они есть
     },
     login: (state, action: PayloadAction<User>) => {
       const storedUser = JSON.parse(localStorage.getItem('users') || '[]')
@@ -40,12 +45,18 @@ const userSlice = createSlice({
         state.isAuthenticated = true;
         const savedMatches = JSON.parse(localStorage.getItem(storedUser.useremail) || '[]');
         state.savedMatches = savedMatches;
+        
+        // Сохраняем авторизованного пользователя в localStorage
+        localStorage.setItem('currentUser', JSON.stringify(storedUser));
       }
     },
     logout: (state) => {
       state.user = null;
       state.isAuthenticated = false;
       state.savedMatches = [];
+      
+      // Удаляем текущего пользователя из localStorage
+      localStorage.removeItem('currentUser');
     },
     setUser: (state, action: PayloadAction<User | null>) => {
       state.user = action.payload;
@@ -79,7 +90,7 @@ export const checkUser = () => {
   return (dispatch: Dispatch) => {
     const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
     if (user) {
-      dispatch(setUser(user));
+      dispatch(setUser(user)); // Устанавливаем текущего пользователя из localStorage
     }
   };
 };
