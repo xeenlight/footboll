@@ -1,16 +1,17 @@
 import styled from "styled-components";
+import { colors } from "../../Theme/colors";
 
 export const StyledHeader = styled.div`
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background: linear-gradient(272deg, #6a11cb, #2575fc); /* Градиент для фона */
+  background: ${colors.headerFooter};
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); 
   color: #fff;
   z-index: 1000;
 
@@ -21,12 +22,13 @@ export const StyledHeader = styled.div`
   .Buttons {
     display: flex;
     align-items: center;
+    gap: 10px;
 
     .Login,
     .Register {
       width: 120px;
       height: 40px;
-      color: white;
+      color: ${colors.colorWhite};
       display: flex;
       align-items: center;
       justify-content: center;
@@ -37,33 +39,11 @@ export const StyledHeader = styled.div`
       transition: all 0.3s ease;
 
       &.Login {
-        background: #00bcd4;
-        clip-path: polygon(
-          82% 100%,
-          30% 100%,
-          0% 100%,
-          0% 65%,
-          30% 0%,
-          100% 0%,
-          100% 26%,
-          82% 75%
-        );
-        position: relative;
-        left: 10px;
+        background: ${colors.bgcButton};
       }
 
       &.Register {
-        background: #9c27b0;
-        clip-path: polygon(
-          18% 0%,
-          70% 0%,
-          100% 0%,
-          100% 35%,
-          70% 100%,
-          0% 100%,
-          0% 74%,
-          18% 25%
-        );
+        background: ${colors.active};
       }
 
       &:hover {
@@ -78,51 +58,7 @@ export const StyledHeader = styled.div`
   }
 
 
-  ul {
-    display: flex;
-    font-size: 25px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
 
-    li {
-      position: relative;
-      text-align: center;
-      transition: transform 0.3s ease;
-
-      &:hover {
-        transform: scale(1.1); /* Эффект увеличения при наведении */
-      }
-
-      a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: bold;
-        display: inline-block;
-        padding: 5px 0;
-        transition: color 0.3s ease;
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 3px;
-        background-color: #ffd700; /* Цвет подчеркивания */
-        transition: width 0.3s ease;
-      }
-
-      &:hover::after {
-        width: 100%; /* Подчеркивание растягивается при наведении */
-      }
-
-      a:hover {
-        color: #ffd700; /* Цвет ссылки при наведении */
-      }
-    }
-  }
 
   ul {
     display: flex;
@@ -157,7 +93,7 @@ export const StyledHeader = styled.div`
         left: 0;
         width: 0;
         height: 3px;
-        background-color: #ffd700; /* Цвет подчеркивания */
+        background-color: ${colors.active};
         transition: width 0.3s ease;
       }
 
@@ -166,7 +102,7 @@ export const StyledHeader = styled.div`
       }
 
       a:hover {
-        color: #ffd700; /* Цвет ссылки при наведении */
+        color: ${colors.active}; /* Цвет ссылки при наведении */
       }
     }
   }
@@ -177,9 +113,11 @@ export const StyledHeader = styled.div`
     justify-content: space-between;
     width: 30px;
     height: 25px;
+    
+    
     cursor: pointer;
     span {
-      background-color: #fff;
+      background-color: ${colors.colorWhite}; 
       height: 4px;
       width: 100%;
       transition: all 0.3s ease;
@@ -264,8 +202,9 @@ export const StyledHeader = styled.div`
       position: absolute;
       top: 70px;
       right: 20px;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      width: 250px;
+      background: ${colors.bgcButton};
+      width: 100%;
+      max-width: 250px;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -321,7 +260,7 @@ export const StyledHeader = styled.div`
       .Register {
         width: 100%;
         height: 40px;
-        color: white;
+        color: ${colors.colorWhite};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -335,8 +274,8 @@ export const StyledHeader = styled.div`
         &.Login {
 
 
-    background: #fff;
-    color: #2575fc;
+    background: ${colors.bgcButtonCursor};
+    color: ${colors.colorWhite};
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -347,8 +286,8 @@ export const StyledHeader = styled.div`
         }
 
         &.Register {
-          background: #fff;
-    color: #2575fc;
+          background: ${colors.bgcButtonCursor};
+          color: ${colors.colorWhite};
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -360,6 +299,8 @@ export const StyledHeader = styled.div`
         &:hover {
           transform: scale(1.05);
           opacity: 0.9;
+          background: ${colors.active};
+          color: ${colors.colorWhite};
         }
 
         &:active {

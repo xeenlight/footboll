@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
-import { GlobalStyle } from './Global.style.ts';
+import { GlobalStyle } from './Theme/globalStyle.ts';
 import { Provider } from 'react-redux';
 import store from './Store/store.ts';
 

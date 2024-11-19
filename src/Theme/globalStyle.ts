@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { colors } from "./colors";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -10,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     height: 100%; /* Растягиваем body на всю высоту экрана */
-    background-color: #2421c3a3;
+    background-color: ${colors.bgcColorBlack};
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
@@ -31,6 +32,30 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 
+export const StyledMainPage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 100px 0;
+
+
+h1{
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: ${colors.colorWhite};
+  
+  text-align: center;
+}
+
+  .Card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
 
 
 export const StyledMatchPage = styled.div`
@@ -43,7 +68,7 @@ export const StyledMatchPage = styled.div`
   h1 {
     font-size: 32px;
     margin-bottom: 20px;
-    color: #fff;
+    color: ${colors.colorWhite};
   }
 
   /* Фильтры */
@@ -57,7 +82,7 @@ export const StyledMatchPage = styled.div`
   .filter-buttons button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #00bcd4;
+    background-color: ${colors.bgcButton};
     color: white;
     border: none;
     border-radius: 5px;
@@ -67,12 +92,12 @@ export const StyledMatchPage = styled.div`
   }
 
   .filter-buttons button:hover {
-    background-color: #0056b3;
+    background-color: ${colors.active};
     transform: scale(1.05);
   }
 
   .filter-buttons button.active {
-    background-color: #ffd700;
+    background-color: ${colors.active};
   }
 
   .filter-buttons button:disabled {
@@ -102,7 +127,7 @@ export const StyledMatchPage = styled.div`
     font-size: 30px;
     border-radius: 20px;
     transition: transform 0.3s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: ${colors.headerFooter};
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
@@ -139,12 +164,12 @@ export const StyledMatchPage = styled.div`
   }
 /* Добавляем отдельный стиль для кнопки с классом .remove-button */
 .remove-button {
-  background-color: #ff0000; /* Красный цвет */
+  background-color: ${colors.active}; /* Красный цвет */
   color: white;
 }
 
 .remove-button:hover {
-  background-color: #cc0000; /* Темный красный при наведении */
+  background-color: #cc0000;  /* Темный красный при наведении */
 }
   .MatchVS.in-play {
     background-color: rgba(0, 255, 60, 0.7);
@@ -183,7 +208,7 @@ export const StyledMatchPage = styled.div`
   }
 
   .MatchVS.default {
-    background-color: wheat;
+    background-color: ${colors.colorWhite};
   }
 
   /* Контейнеры для команд */
@@ -213,10 +238,12 @@ export const StyledMatchPage = styled.div`
   /* Названия команд */
   .match-item h2 {
     font-size: 20px;
+    color: ${colors.colorWhite};
   }
 
   .match-item h3 {
     font-size: 20px;
+    color: ${colors.colorWhite};
   }
 
   .match-item h4 {
@@ -253,6 +280,7 @@ export const StyledMatchPage = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
+    color: ${colors.colorWhite};
   }
 
   h5 {
@@ -298,12 +326,12 @@ export const StyledMatchPage = styled.div`
   }
 
   .home-score {
-    background-color: #007bff;
+    background-color: ${colors.active};
     color: white;
   }
 
   .away-score {
-    background-color: #007bff;
+    background-color: ${colors.active};
     color: white;
   }
 
@@ -329,7 +357,7 @@ export const StyledMatchPage = styled.div`
   p{
     font-size: 19px;
     font-weight: 500;
-    color: white;
+    color: ${colors.colorWhite};
 
   }
   .ButtonConteiner{
@@ -340,10 +368,11 @@ export const StyledMatchPage = styled.div`
     margin-top: 100px;
   }
   .ButtonSaveLogin {
+    max-width: 100%;
     width: 350px;
     padding: 15px;
-    background: #fff;
-    color: #2575fc;
+    background: ${colors.bgcButton};
+    color: ${colors.colorWhite};
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -353,12 +382,13 @@ export const StyledMatchPage = styled.div`
 
 
     &:hover {
-      background-color: #2575fc;
-      color: white;
+      background-color: ${colors.bgcButtonCursor};
+      color: ${colors.colorWhite};
       transform: translateY(-2px);
     }
 
     &:active {
+      background-color: ${colors.active};
       transform: translateY(1px);
     }
   }

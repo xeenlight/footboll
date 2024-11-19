@@ -1,7 +1,7 @@
 import Card from "../../Components/Card/Card";
 import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header";
-import { StyledMainPage } from "../MainPage/MainPage.style";
+import { StyledMainPage } from "../../Theme/globalStyle";
 
 export const MainPage = () => {
   return (

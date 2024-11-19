@@ -1,14 +1,13 @@
 import styled from "styled-components";
-
-
+import { colors } from "../../Theme/colors";
 
 export const StyledFooter = styled.div`
   width: 100%;
   position: fixed;
   bottom: 0;
   padding: 20px;
-  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Градиент для фона */
-  color: #fff;
+  background: ${colors.headerFooter};
+  color: ${colors.colorWhite};
   font-size: 18px;
   font-weight: 600;
   display: flex;
@@ -21,7 +20,6 @@ export const StyledFooter = styled.div`
   .infoRight {
     display: flex;
     gap: 20px;
-
     align-items: center;
   }
 
@@ -32,16 +30,16 @@ export const StyledFooter = styled.div`
     text-align: center;
 
     .infoRight {
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    align-items: center;
-  }
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   a {
     text-decoration: none;
-    color: #fff;
+    color: ${colors.colorWhite};
     display: flex;
     align-items: center;
     gap: 10px;
@@ -50,9 +48,6 @@ export const StyledFooter = styled.div`
   img {
     width: 35px;
     height: auto;
-    filter: brightness(0) invert(1)
+    filter: brightness(0) invert(1);
   }
-
-
 `;
-

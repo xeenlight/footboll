@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
+import { colors } from "../../Theme/colors";
 
 export const ErrorMessage = styled.p`
   font-size: 18px;
   font-weight: bold;
-  color: yellow;
+  color: ${colors.active};
   margin-bottom: 10px;
 `;
 
@@ -34,7 +35,7 @@ export const StyleInut = styled.input<SInterfaceProps>`
     `}
 
   &::placeholder {
-    color: #fff;
+    color: ${colors.colorWhite};
   }
 
 

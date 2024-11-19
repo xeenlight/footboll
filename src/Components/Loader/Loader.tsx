@@ -1,6 +1,7 @@
 // Loader.tsx
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { colors } from '../../Theme/colors';
 
 // Анимация для лоадера
 const l24 = keyframes`
@@ -24,7 +25,7 @@ const LoaderCircle = styled.div`
   aspect-ratio: 1;
   border-radius: 50%;
   border: 8px solid #0000;
-  border-right-color: #6a11cb;
+  border-right-color: ${colors.active};
   position: relative;
   animation: ${l24} 1s infinite linear;
 

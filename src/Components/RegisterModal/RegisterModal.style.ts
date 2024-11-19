@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { colors } from "../../Theme/colors";
 
 // Анимация для плавного появления модального окна
 const fadeIn = keyframes`
@@ -27,7 +28,7 @@ export const StyledRegisterModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background:  ${colors.bgcButton};
   width: 350px;
   padding: 20px;
   border-radius: 15px;
@@ -42,10 +43,9 @@ export const StyledRegisterModal = styled.div`
 
 
   h1 {
-    color: #fff;
+    color:  ${colors.colorWhite};
     margin-bottom: 20px;
     font-size: 34px;
-    font-family: "Roboto", sans-serif;
     text-align: center;
   }
 
@@ -59,18 +59,18 @@ export const StyledRegisterModal = styled.div`
   input {
     width: 100%;
     padding: 12px;
-    border: 2px solid #fff;
+    border: 2px solid  ${colors.colorWhite};;
     border-radius: 8px;
     font-size: 16px;
     background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color:  ${colors.colorWhite};
     outline: none;
     transition: 0.3s;
     box-sizing: border-box;
     
 
     &:focus {
-      border-color: #2575fc;
+      border-color:  ${colors.active};
       background: rgba(255, 255, 255, 0.3);
     }
   }
@@ -78,8 +78,8 @@ export const StyledRegisterModal = styled.div`
   button {
     width: 100%;
     padding: 15px;
-    background: #fff;
-    color: #2575fc;
+    background:  ${colors.bgcButtonCursor};
+    color:  ${colors.colorWhite};
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -91,8 +91,8 @@ export const StyledRegisterModal = styled.div`
 
 
     &:hover {
-      background-color: #2575fc;
-      color: white;
+      background-color:  ${colors.active};
+      color:  ${colors.colorWhite};
       transform: translateY(-2px);
     }
 

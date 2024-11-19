@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { colors } from "../../Theme/colors";
 
 const fadeIn = keyframes`
   0% {
@@ -25,7 +26,7 @@ export const StyledLoginModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background: ${colors.bgcButton};
   width: 350px;
   padding: 20px;
   border-radius: 15px;
@@ -38,10 +39,9 @@ export const StyledLoginModal = styled.div`
   animation: ${fadeIn} 0.5s ease-out;
 
   h1 {
-    color: #fff;
+    color: ${colors.colorWhite};
     margin-bottom: 20px;
     font-size: 34px;
-    font-family: "Roboto", sans-serif;
     text-align: center;
   }
 
@@ -55,17 +55,17 @@ export const StyledLoginModal = styled.div`
   input {
     width: 100%;
     padding: 12px;
-    border: 2px solid #fff;
+    border: 2px solid ${colors.colorWhite};
     border-radius: 8px;
     font-size: 16px;
     background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color: ${colors.colorWhite};
     outline: none;
     transition: 0.3s;
     box-sizing: border-box;
 
     &:focus {
-      border-color: #2575fc;
+      border-color: ${colors.active};
       background: rgba(255, 255, 255, 0.3);
     }
   }
@@ -73,8 +73,8 @@ export const StyledLoginModal = styled.div`
   button {
     width: 100%;
     padding: 15px;
-    background: #fff;
-    color: #2575fc;
+    background: ${colors.bgcButtonCursor};
+    color: ${colors.colorWhite};
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -84,8 +84,8 @@ export const StyledLoginModal = styled.div`
     margin-top: 20px;
 
     &:hover {
-      background-color: #2575fc;
-      color: white;
+      background-color: ${colors.active};
+      color: ${colors.colorWhite};
       transform: translateY(-2px);
     }
 
@@ -95,14 +95,14 @@ export const StyledLoginModal = styled.div`
   }
 
   .forgot-password {
-    color: #fff;
+    color: ${colors.colorWhite};
     font-size: 14px;
     margin-top: 10px;
     text-decoration: underline;
     cursor: pointer;
 
     &:hover {
-      color: #2575fc;
+      color: ${colors.colorWhite};
     }
   }
 

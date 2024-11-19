@@ -1,9 +1,9 @@
 import styled from "styled-components";
-
+import { colors } from "../../Theme/colors";
 
 export const StyledCard = styled.div`
 
-  background: rgba(255, 255, 255, 0.1);
+  background: ${colors.matchIcon};
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -14,6 +14,8 @@ export const StyledCard = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  
 a{
   text-decoration: none;
 }
@@ -22,6 +24,23 @@ a{
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    background: ${colors.active};
+
+    .card-text {
+    text-align: center;
+    margin: 10px 0;
+    color: ${colors.colorWhite};
+
+    h3 {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 14px;
+      color: #ccc;
+    }
+  }
   }
 
   img {
@@ -39,7 +58,7 @@ max-width: 300px;
   .card-text {
     text-align: center;
     margin: 10px 0;
-    color: #fff;
+    color: ${colors.colorBlack};
 
     h3 {
       font-size: 18px;
@@ -48,7 +67,6 @@ max-width: 300px;
 
     p {
       font-size: 14px;
-      color: #ccc;
     }
   }
 `;
