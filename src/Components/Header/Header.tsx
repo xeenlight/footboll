@@ -2,6 +2,7 @@ import { useState, useEffect, SetStateAction } from "react";
 import { StyledHeader } from "./Header.style";
 import { LoginModal } from "../LoginModal/LoginModal";
 import { RegisterModal } from "../RegisterModal/RegisterModal";
+import { useTheme } from '../../Theme/ThemeContext';  // Импортируем useTheme
 
 // Интерфейс для данных пользователя
 interface UserData {
@@ -14,6 +15,7 @@ export const Header = () => {
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null); // Типизировано
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Состояние для бургер-меню
+  const { toggleTheme } = useTheme();  // Получаем функцию переключения темы
 
   useEffect(() => {
     const savedUserData = localStorage.getItem("currentUser");
@@ -107,6 +109,9 @@ export const Header = () => {
           </>
         ) : (
           <>
+                <button onClick={toggleTheme} className="theme-toggle-btn">
+        Switch Theme
+      </button>
             <div className="Login" onClick={handleLoginClick}>
               Login
             </div>
@@ -116,6 +121,8 @@ export const Header = () => {
           </>
         )}
       </div>
+      
+      
       
       {isLoginModalOpen && (
         <LoginModal

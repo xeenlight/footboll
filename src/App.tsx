@@ -16,9 +16,12 @@ import { Championship } from "./Pages/Championship/Championship";
 import { SerieABr } from "./Pages/SerieABr/SerieABr";
 import { Worldcup } from "./Pages/Worldcup/Worldcup";
 import { European } from "./Pages/Europe/European";
+import { useTheme, ThemeProvider } from './Theme/ThemeContext'; // Импортируем ThemeProvider и useTheme
+import { GlobalStyle } from './Theme/globalStyle.ts';
 
 function App() {
   const dispatch = useDispatch();
+  const { theme } = useTheme(); // Используем контекст для получения текущей темы
 
   useEffect(() => {
     dispatch(checkUser());
@@ -85,6 +88,7 @@ function App() {
 
   return (
     <div className="App">
+      <GlobalStyle theme={theme} /> {/* Передаем текущую тему в GlobalStyle */}
       <RouterProvider router={router} />
     </div>
   );

@@ -1,7 +1,13 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { colors } from "./colors";
 
-export const GlobalStyle = createGlobalStyle`
+import { lightColors, darkColors } from './colors';
+
+interface GlobalStyleProps {
+  theme: 'light' | 'dark';
+}
+
+export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   * {
     margin: 0;
     padding: 0;
@@ -10,29 +16,28 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    height: 100%; /* Растягиваем body на всю высоту экрана */
-    background-color: ${colors.bgcColorBlack};
+    height: 100%;
+    background-color: ${({ theme }) => (theme === 'light' ? lightColors.bgcColorBlack : darkColors.bgcColorBlack)};
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
     display: flex;
     flex-direction: column;
-
   }
 
   #root {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Растягиваем root на всю высоту экрана */
+    min-height: 100vh;
   }
 
   .main-content {
-    flex-grow: 1; /* Основной контент растягивается на оставшееся пространство */
+    flex-grow: 1;
   }
 `;
 
 
-export const StyledMainPage = styled.div`
+export const StyledMainPage = styled.div<GlobalStyleProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,11 +48,9 @@ export const StyledMainPage = styled.div`
 h1{
   font-size: 50px;
   margin-bottom: 20px;
-  color: ${colors.colorWhite};
-  
+  color:${({ theme }) => (theme === 'light' ? lightColors.bgcColorBlack : darkColors.bgcColorBlack)};
   text-align: center;
 }
-
   .Card{
     display: flex;
     flex-wrap: wrap;
