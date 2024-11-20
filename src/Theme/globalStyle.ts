@@ -1,13 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { colors } from "./colors";
 
-import { lightColors, darkColors } from './colors';
-
-interface GlobalStyleProps {
-  theme: 'light' | 'dark';
-}
-
-export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
+export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
@@ -16,28 +10,29 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   }
 
   body {
-    height: 100%;
-    background-color: ${({ theme }) => (theme === 'light' ? lightColors.bgcColorBlack : darkColors.bgcColorBlack)};
+    height: 100%; /* Растягиваем body на всю высоту экрана */
+    background-color: ${colors.bgcColorBlack};
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
     display: flex;
     flex-direction: column;
+
   }
 
   #root {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Растягиваем root на всю высоту экрана */
   }
 
   .main-content {
-    flex-grow: 1;
+    flex-grow: 1; /* Основной контент растягивается на оставшееся пространство */
   }
 `;
 
 
-export const StyledMainPage = styled.div<GlobalStyleProps>`
+export const StyledMainPage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,9 +43,11 @@ export const StyledMainPage = styled.div<GlobalStyleProps>`
 h1{
   font-size: 50px;
   margin-bottom: 20px;
-  color:${({ theme }) => (theme === 'light' ? lightColors.bgcColorBlack : darkColors.bgcColorBlack)};
+  color: ${colors.colorWhite};
+  
   text-align: center;
 }
+
   .Card{
     display: flex;
     flex-wrap: wrap;

@@ -17,7 +17,6 @@ export const Bundesliga = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // Состояние для модального окна
 
   const dispatch = useDispatch();
-  // const user = useSelector((state: RootState) => state.user.user);
   const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
   const savedMatches = useSelector((state: RootState) => state.user.savedMatches);
 

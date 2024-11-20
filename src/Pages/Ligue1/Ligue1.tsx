@@ -17,7 +17,6 @@ export const Ligue1 = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // Состояние для модального окна
 
   const dispatch = useDispatch();
-  // const user = useSelector((state: RootState) => state.user.user);
   const isAuthenticated = useSelector(
     (state: RootState) => state.user.isAuthenticated
   );

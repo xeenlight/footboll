@@ -18,7 +18,6 @@ export const ChampionsLeague = () => {
 console.log(matches);
 
   const dispatch = useDispatch();
-  // const user = useSelector((state: RootState) => state.user.user);
   const isAuthenticated = useSelector(
     (state: RootState) => state.user.isAuthenticated
   );
