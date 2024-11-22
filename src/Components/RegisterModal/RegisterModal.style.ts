@@ -100,7 +100,51 @@ export const StyledRegisterModal = styled.div`
       transform: translateY(1px);
     }
   }
-
+  .ExitButton {
+    width: 50px;
+    height: 50px;
+    background: ${colors.bgcButtonCursor};
+    border-radius: 50%;
+    z-index: 1100;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .ExitButton:hover {
+    width: 50px;
+    height: 50px;
+    background: ${colors.active};
+    border-radius: 50%;
+    z-index: 1100;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    transform: translateY(-2px);
+  }
+  .Exit {
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    border-radius: 20px;
+    background-color: white;
+  }
+  
+  .Exit.horizontal {
+    transform: rotate(45deg); /* Горизонтальная линия */
+  }
+  
+  .Exit.vertical {
+    transform: rotate(-45deg); /* Вертикальная линия */
+  }
+  
 `;
 
 export const ModalOverlay = styled.div`

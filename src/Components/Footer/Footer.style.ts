@@ -17,14 +17,18 @@ export const StyledFooter = styled.div`
   flex-wrap: wrap;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  text-align: center;
+
   .infoRight {
     display: flex;
     gap: 20px;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   /* Для мобильных устройств (адаптивность) */
-  @media (max-width: 768px) {
+  @media (max-width: 800pxpx) {
     flex-direction: column;
     gap: 10px;
     text-align: center;

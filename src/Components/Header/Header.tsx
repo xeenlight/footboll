@@ -56,21 +56,23 @@ export const Header = () => {
     <StyledHeader>
       <h1>Football Stats</h1>
       
-      {/* Бургер-меню для мобильных */}
+
       <div className="burger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         <span className="burger-bar"></span>
         <span className="burger-bar"></span>
         <span className="burger-bar"></span>
       </div>
       
-      {/* Навигация */}
       <nav className={`menu ${isMenuOpen ? "open" : ""}`}>
         <ul>
           <li>
-            <a href="/">Match</a>
+            <a href="/">Football Leagues</a>
           </li>
           <li>
-            <a href="/100">Save match</a>
+            <a href="/13">Match Today</a>
+          </li>
+          <li>
+            <a href="/100">Save Match</a>
           </li>
         </ul>
         

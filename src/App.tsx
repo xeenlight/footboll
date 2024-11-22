@@ -16,6 +16,7 @@ import { Championship } from "./Pages/Championship/Championship";
 import { SerieABr } from "./Pages/SerieABr/SerieABr";
 import { Worldcup } from "./Pages/Worldcup/Worldcup";
 import { European } from "./Pages/Europe/European";
+import { MatchToday } from "./Pages/MatchToday/MatchToday";
 
 function App() {
   const dispatch = useDispatch();
@@ -76,6 +77,10 @@ function App() {
     {
       path: "/12",
       element: <European/>,
+    },
+    {
+      path: "/13",
+      element: <MatchToday/>,
     },
     {
       path: "/100",

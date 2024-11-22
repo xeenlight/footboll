@@ -59,6 +59,10 @@ export const RegisterModal = ({ onClose, onRegisterSuccess }: RegisterModalProps
     <>
       <ModalOverlay onClick={onClose} />
       <StyledRegisterModal>
+      <div className="ExitButton" onClick={onClose}>
+  <div className="Exit horizontal"></div>
+  <div className="Exit vertical"></div>
+</div>
         <h1>Register</h1> 
         <form onSubmit={handleSubmit(onRegisterSubmit)}>
           <Controller

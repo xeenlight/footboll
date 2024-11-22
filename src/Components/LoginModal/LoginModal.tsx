@@ -90,6 +90,11 @@ export const LoginModal = ({ onClose, onLoginSuccess }: LoginModalProps) => {
     <>
       <ModalOverlay onClick={onClose} />
       <StyledLoginModal>
+      <div className="ExitButton" onClick={onClose}>
+  <div className="Exit horizontal"></div>
+  <div className="Exit vertical"></div>
+</div>
+
         <h1>Login</h1>
         <form onSubmit={handleSubmit(onLoginSubmit)}>
           <Controller

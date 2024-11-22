@@ -42,7 +42,7 @@ export const StyledMainPage = styled.div`
 
 h1{
   font-size: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   color: ${colors.colorWhite};
   
   text-align: center;
@@ -62,12 +62,12 @@ export const StyledMatchPage = styled.div`
   width: 100%;
   display: block;
   text-align: center;
-  padding: calc(1.3vw + 75px) 10px calc(-5.2vw + 199px);
+  padding: calc(3.3vw + 75px) 10px calc(-5.2vw + 199px);
 
   /* Заголовок */
   h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 45px;
+    margin-bottom: 40px;
     color: ${colors.colorWhite};
   }
 
@@ -176,7 +176,7 @@ export const StyledMatchPage = styled.div`
   }
 
   .MatchVS.timed {
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgb(38 87 103);
   }
 
   .MatchVS.paused {

@@ -15,6 +15,9 @@ export const StyledHeader = styled.div`
   color: #fff;
   z-index: 1000;
 
+  h1{
+    font-size: calc(0.5vw + 22.4px);
+  }
   .ButtonsBurger {
     display: none;
   }
@@ -70,7 +73,6 @@ export const StyledHeader = styled.div`
 
     li {
       position: relative;
-      text-align: center;
       transition: transform 0.3s ease;
 
       &:hover {
@@ -82,10 +84,9 @@ export const StyledHeader = styled.div`
         text-decoration: none;
         font-weight: bold;
         display: inline-block;
-        padding: 5px 0;
         transition: color 0.3s ease;
+        font-size: calc(0.5vw + 22.4px);
       }
-
       &::after {
         content: "";
         position: absolute;
@@ -121,78 +122,12 @@ export const StyledHeader = styled.div`
       height: 4px;
       width: 100%;
       transition: all 0.3s ease;
+      border-radius: 20px;
     }
   }
 
-  /* Мобильная версия */
-  @media (max-width: 768px) {
-    padding: 10px 15px;
 
-    .menu {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      position: absolute;
-      top: 70px;
-      right: 20px;
-      background-color: #2575fc;
-      width: 200px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    ul {
-      display: flex;
-      flex-direction: column;
-    }
-    .menu.open {
-      display: flex;
-    }
-
-    .burger-menu {
-      display: flex;
-    }
-
-    .Buttons {
-      display: none;
-    }
-    .ButtonsBurger {
-      display: flex;
-      flex-direction: column;
-    }
-    .Login,
-    .Register {
-      width: 120px;
-      height: 40px;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-
-      &.Login {
-        background: #00bcd4;
-      }
-
-      &.Register {
-        background: #9c27b0;
-      }
-
-      &:hover {
-        transform: scale(1.05);
-        opacity: 0.9;
-      }
-
-      &:active {
-        transform: scale(0.98);
-      }
-    }
-  }
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     padding: 10px 15px;
 
     .menu {
@@ -217,14 +152,14 @@ export const StyledHeader = styled.div`
     ul {
       display: flex;
       flex-direction: column;
-      gap: 1px;
-      list-style: none;
+      gap: 10px;
+      list-style: disc;
       padding: 0;
       margin: 0;
-
+      margin-bottom: 10px;
+      margin-left: 30px;
       li {
         width: 100%;
-        text-align: center;
         transition: transform 0.3s ease;
         font-size: 28px;
         a {
@@ -234,6 +169,7 @@ export const StyledHeader = styled.div`
           text-decoration: none;
           font-weight: bold;
           transition: background 0.3s ease;
+          font-size: 21px;
           &:hover {
             background-color: #00bcd4;
           }
@@ -269,7 +205,7 @@ export const StyledHeader = styled.div`
         cursor: pointer;
         border-radius: 8px;
         transition: all 0.3s ease;
-        margin-top: 10px;
+
 
         &.Login {
 
@@ -286,7 +222,7 @@ export const StyledHeader = styled.div`
         }
 
         &.Register {
-          background: ${colors.bgcButtonCursor};
+          background: ${colors.active};
           color: ${colors.colorWhite};
     border: none;
     border-radius: 8px;
