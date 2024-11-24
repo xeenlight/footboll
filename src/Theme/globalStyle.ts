@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { colors } from "./colors";
+// GlobalStyle.ts
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -10,27 +10,22 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    height: 100%; /* Растягиваем body на всю высоту экрана */
-    background-color: ${colors.bgcColorBlack};
+    height: 100%;
+    background-color: ${({ theme }) => theme.bgc};  /* Используем background-color из переданной темы */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
     display: flex;
     flex-direction: column;
-
   }
 
   #root {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Растягиваем root на всю высоту экрана */
+    min-height: 100vh;
   }
 
   .main-content {
-    flex-grow: 1; /* Основной контент растягивается на оставшееся пространство */
+    flex-grow: 1;
   }
 `;
-
-
-
-

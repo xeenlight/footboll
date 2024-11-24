@@ -2,6 +2,7 @@ import { useState, useEffect, SetStateAction } from "react";
 import { StyledHeader } from "./Header.style";
 import { LoginModal } from "../LoginModal/LoginModal";
 import { RegisterModal } from "../RegisterModal/RegisterModal";
+import { useTheme } from "../../Theme/ThemeContext";
 
 // Интерфейс для данных пользователя
 interface UserData {
@@ -14,6 +15,7 @@ export const Header = () => {
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null); // Типизировано
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Состояние для бургер-меню
+  const { toggleTheme, colors } = useTheme();
 
   useEffect(() => {
     const savedUserData = localStorage.getItem("currentUser");
@@ -97,7 +99,7 @@ export const Header = () => {
           )}
         </div>
       </nav>
-      
+      <button onClick={toggleTheme}>Theme</button>
       {/* Кнопки входа и регистрации */}
       <div className="Buttons">
         {userData ? (

@@ -6,7 +6,7 @@ export const StyledHeader = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${colors.headerFooter};
+  background: ${({ theme }) => theme.headerFooter};
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
