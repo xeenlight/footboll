@@ -29,7 +29,7 @@ a{
     .card-text {
     text-align: center;
     margin: 10px 0;
-    color: ${colors.colorWhite};
+    color: ${({ theme }) => theme.text};
 
     h3 {
       font-size: 18px;
