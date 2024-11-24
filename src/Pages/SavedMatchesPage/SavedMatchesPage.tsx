@@ -106,7 +106,7 @@ const SavedMatchesPage = () => {
           <ul>
             {savedMatches.length === 0 ? (
               <div className="ButtonConteiner">
-                <p>Find interesting matches</p>
+                <p className="save">Find interesting matches</p>
                 
                 <a href="/"><button className="ButtonSaveLogin">Match</button></a>
                 
