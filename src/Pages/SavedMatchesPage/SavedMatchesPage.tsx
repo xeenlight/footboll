@@ -3,7 +3,8 @@ import { RootState } from "../../Store/store";
 import { removeMatch } from "../../Store/Api/userSlice";
 import { Header } from "../../Components/Header/Header";
 import { Footer } from "../../Components/Footer/Footer";
-import { StyledMatchPage } from '../../Theme/globalStyle';
+import { StyledMatchPage } from '../../Theme/matchPage';
+
 import { useState } from "react";
 import { LoginModal } from "../../Components/LoginModal/LoginModal";
 import { RegisterModal } from "../../Components/RegisterModal/RegisterModal"; // Импортируем RegisterModal

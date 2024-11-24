@@ -4,7 +4,8 @@ import { RootState } from "../../Store/store";
 import { saveMatch, removeMatch } from "../../Store/Api/userSlice";
 import { Header } from "../../Components/Header/Header";
 import { Footer } from "../../Components/Footer/Footer";
-import { StyledMatchPage } from '../../Theme/globalStyle';
+import { StyledMatchPage } from '../../Theme/matchPage';
+
 import { LoginModal } from "../../Components/LoginModal/LoginModal"; // Импортируем модальное окно
 import Loader from "../../Components/Loader/Loader";
 
