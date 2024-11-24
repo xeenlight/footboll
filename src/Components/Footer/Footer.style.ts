@@ -6,7 +6,7 @@ export const StyledFooter = styled.div`
   position: fixed;
   bottom: 0;
   padding: 20px;
-  background: ${colors.headerFooter};
+  background: ${({ theme }) => theme.headerFooter};
   color: ${colors.colorWhite};
   font-size: 18px;
   font-weight: 600;
@@ -32,6 +32,7 @@ export const StyledFooter = styled.div`
     flex-direction: column;
     gap: 10px;
     text-align: center;
+    
 
     .infoRight {
       display: flex;

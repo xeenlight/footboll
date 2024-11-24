@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "./colors";
+
 
 
 
@@ -14,7 +14,7 @@ export const StyledMainPage = styled.div`
 h1{
   font-size: 50px;
   margin-bottom: 40px;
-  color: ${colors.colorWhite};
+  color:  ${({ theme }) => theme.text};
   
   text-align: center;
 }

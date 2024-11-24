@@ -28,7 +28,7 @@ export const StyledRegisterModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
-  background:  ${colors.bgcButton};
+  background:   ${({ theme }) => theme.bgcModal};
   width: 350px;
   padding: 20px;
   border-radius: 15px;
@@ -43,7 +43,7 @@ export const StyledRegisterModal = styled.div`
 
 
   h1 {
-    color:  ${colors.colorWhite};
+    color:   ${({ theme }) => theme.text};
     margin-bottom: 20px;
     font-size: 34px;
     text-align: center;
@@ -59,11 +59,11 @@ export const StyledRegisterModal = styled.div`
   input {
     width: 100%;
     padding: 12px;
-    border: 2px solid  ${colors.colorWhite};;
+    border: 2px solid  ${({ theme }) => theme.text};
     border-radius: 8px;
     font-size: 16px;
     background: rgba(255, 255, 255, 0.1);
-    color:  ${colors.colorWhite};
+    color:  ${({ theme }) => theme.text};
     outline: none;
     transition: 0.3s;
     box-sizing: border-box;

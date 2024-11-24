@@ -11,21 +11,30 @@ export const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   color: #fff;
   z-index: 1000;
 
-  h1{
+  h1 {
     font-size: calc(0.5vw + 22.4px);
   }
   .ButtonsBurger {
     display: none;
   }
-
+  .ThemeBurger {
+    display: none;
+  }
   .Buttons {
     display: flex;
     align-items: center;
     gap: 10px;
+    .Theme {
+      width: 39px;
+      height: 39px;
+      border-radius: 50%;
+      background: ${({ theme }) => theme.disableFiltr};
+      cursor: pointer;
+    }
 
     .Login,
     .Register {
@@ -42,7 +51,7 @@ export const StyledHeader = styled.div`
       transition: all 0.3s ease;
 
       &.Login {
-        background: ${colors.bgcButton};
+        background: ${({ theme }) => theme.disableFiltr};
       }
 
       &.Register {
@@ -59,9 +68,6 @@ export const StyledHeader = styled.div`
       }
     }
   }
-
-
-
 
   ul {
     display: flex;
@@ -94,7 +100,7 @@ export const StyledHeader = styled.div`
         left: 0;
         width: 0;
         height: 3px;
-        background-color: ${colors.active};
+        background-color: ${({ theme }) => theme.activetext};
         transition: width 0.3s ease;
       }
 
@@ -103,7 +109,7 @@ export const StyledHeader = styled.div`
       }
 
       a:hover {
-        color: ${colors.active}; /* Цвет ссылки при наведении */
+        color: ${({ theme }) => theme.activetext};/* Цвет ссылки при наведении */
       }
     }
   }
@@ -114,18 +120,16 @@ export const StyledHeader = styled.div`
     justify-content: space-between;
     width: 30px;
     height: 25px;
-    
-    
+
     cursor: pointer;
     span {
-      background-color: ${colors.colorWhite}; 
+      background-color: ${colors.colorWhite};
       height: 4px;
       width: 100%;
       transition: all 0.3s ease;
       border-radius: 20px;
     }
   }
-
 
   @media (max-width: 800px) {
     padding: 10px 15px;
@@ -137,7 +141,8 @@ export const StyledHeader = styled.div`
       position: absolute;
       top: 70px;
       right: 20px;
-      background: ${colors.bgcButton};
+      background: ${({ theme }) => theme.bgcModal};
+
       width: 100%;
       max-width: 250px;
       padding: 20px;
@@ -154,6 +159,7 @@ export const StyledHeader = styled.div`
       flex-direction: column;
       gap: 10px;
       list-style: disc;
+      color: ${({ theme }) => theme.text};
       padding: 0;
       margin: 0;
       margin-bottom: 10px;
@@ -165,7 +171,7 @@ export const StyledHeader = styled.div`
         a {
           display: block;
           width: 100%;
-          color: #fff;
+          color: ${({ theme }) => theme.text};
           text-decoration: none;
           font-weight: bold;
           transition: background 0.3s ease;
@@ -180,7 +186,21 @@ export const StyledHeader = styled.div`
     .burger-menu {
       display: flex;
     }
-
+    .ThemeBurger {
+      display: flex;
+      width: 100%;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      background: rgb(83 115 125);
+      color: rgb(255, 255, 255);
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
     .Buttons {
       display: none;
     }
@@ -190,7 +210,6 @@ export const StyledHeader = styled.div`
       flex-direction: column;
       gap: 15px;
       width: 100%;
-
 
       .Login,
       .Register {
@@ -206,30 +225,26 @@ export const StyledHeader = styled.div`
         border-radius: 8px;
         transition: all 0.3s ease;
 
-
         &.Login {
-
-
-    background: ${colors.bgcButtonCursor};
-    color: ${colors.colorWhite};
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-
+          background: ${colors.bgcButtonCursor};
+          color: ${colors.colorWhite};
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-weight: bold;
         }
 
         &.Register {
           background: ${colors.active};
           color: ${colors.colorWhite};
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-weight: bold;
         }
 
         &:hover {

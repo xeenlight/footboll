@@ -2,7 +2,7 @@ import { useState, useEffect, SetStateAction } from "react";
 import { StyledHeader } from "./Header.style";
 import { LoginModal } from "../LoginModal/LoginModal";
 import { RegisterModal } from "../RegisterModal/RegisterModal";
-import { useTheme } from "../../Theme/ThemeContext";
+import { useTheme } from "../../Theme/themeContext";
 
 // Интерфейс для данных пользователя
 interface UserData {
@@ -15,7 +15,7 @@ export const Header = () => {
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null); // Типизировано
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Состояние для бургер-меню
-  const { toggleTheme, colors } = useTheme();
+  const { toggleTheme } = useTheme();
 
   useEffect(() => {
     const savedUserData = localStorage.getItem("currentUser");
@@ -77,9 +77,11 @@ export const Header = () => {
             <a href="/100">Save Match</a>
           </li>
         </ul>
-        
+
+
         {/* Кнопки входа и регистрации в бургер-меню */}
         <div className="ButtonsBurger">
+        <button className="ThemeBurger" onClick={toggleTheme}>Theme</button>
           {userData ? (
             <>
               <div className="Login">{userData.username}</div>
@@ -99,9 +101,10 @@ export const Header = () => {
           )}
         </div>
       </nav>
-      <button onClick={toggleTheme}>Theme</button>
+
       {/* Кнопки входа и регистрации */}
       <div className="Buttons">
+      <button className="Theme" onClick={toggleTheme}></button>
         {userData ? (
           <>
             <div className="Login">{userData.username}</div>

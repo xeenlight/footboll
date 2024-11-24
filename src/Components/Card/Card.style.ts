@@ -24,7 +24,7 @@ a{
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    background: ${colors.active};
+    background: ${({ theme }) => theme.activetext};
 
     .card-text {
     text-align: center;

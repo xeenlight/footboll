@@ -93,11 +93,11 @@ const SavedMatchesPage = () => {
         <h1>Your saved matches</h1>
         {!currentUser ? (
           <div className="ButtonConteiner">
-            <p>Login to your account to save matches </p>
+            <p className="save">Login to your account to save matches </p>
             <button className="ButtonSaveLogin" onClick={openLoginModal}>
               Login
             </button>
-            <p>Don't have an account?</p>
+            <p className="save">Don't have an account?</p>
             <button className="ButtonSaveLogin" onClick={openRegisterModal}>
               Register
             </button>

@@ -35,7 +35,7 @@ export const StyleInut = styled.input<SInterfaceProps>`
     `}
 
   &::placeholder {
-    color: ${colors.colorWhite};
+    color: ${({ theme }) => theme.text};
   }
 
 

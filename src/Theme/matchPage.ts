@@ -12,7 +12,7 @@ export const StyledMatchPage = styled.div`
   h1 {
     font-size: 45px;
     margin-bottom: 40px;
-    color: ${colors.colorWhite};
+    color:  ${({ theme }) => theme.text};
   }
 
   /* Фильтры */
@@ -26,7 +26,7 @@ export const StyledMatchPage = styled.div`
   .filter-buttons button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: ${colors.bgcButton};
+    background-color: ${({ theme }) => theme.disableFiltr};
     color: white;
     border: none;
     border-radius: 5px;
@@ -36,12 +36,12 @@ export const StyledMatchPage = styled.div`
   }
 
   .filter-buttons button:hover {
-    background-color: ${colors.active};
+    background-color: ${({ theme }) => theme.activeFiltr};
     transform: scale(1.05);
   }
 
   .filter-buttons button.active {
-    background-color: ${colors.active};
+    background-color: ${({ theme }) => theme.activeFiltr};
   }
 
   .filter-buttons button:disabled {
@@ -71,7 +71,7 @@ export const StyledMatchPage = styled.div`
     font-size: 30px;
     border-radius: 20px;
     transition: transform 0.3s ease-in-out;
-    background-color: ${colors.headerFooter};
+    background-color:   ${({ theme }) => theme.matchitemBgc};
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
@@ -195,9 +195,11 @@ export const StyledMatchPage = styled.div`
   }
 
   .match-item p {
-    font-size: 10px;
+    font-size: 13px;
   }
-
+.save{
+  color:${({ theme }) => theme.text};
+}
   /* Логотипы команд */
   .match-item img {
     width: 100%;
@@ -302,7 +304,6 @@ export const StyledMatchPage = styled.div`
     font-size: 19px;
     font-weight: 500;
     color: ${colors.colorWhite};
-
   }
   .ButtonConteiner{
     display: flex;
@@ -315,7 +316,7 @@ export const StyledMatchPage = styled.div`
     max-width: 100%;
     width: 350px;
     padding: 15px;
-    background: ${colors.bgcButton};
+    background-color:   ${({ theme }) => theme.disableFiltr};
     color: ${colors.colorWhite};
     border: none;
     border-radius: 8px;
