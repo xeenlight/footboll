@@ -1,6 +1,7 @@
 import Card from "../../Components/Card/Card";
 import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header";
+import ThemeButton from "../../Components/ThemeButton/ThemeButton";
 import { StyledMainPage } from "../../Theme/mainPage";
 
 export const MainPage = () => {
@@ -9,6 +10,7 @@ export const MainPage = () => {
       <Header />
       <StyledMainPage>
         <h1>Football Coverage</h1>
+        <ThemeButton/>
         <div className="Card">
           <Card
             image="https://crests.football-data.org/CL.png"

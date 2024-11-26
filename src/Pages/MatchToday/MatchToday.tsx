@@ -9,7 +9,7 @@ import { StyledMatchPage } from '../../Theme/matchPage';
 import { LoginModal } from "../../Components/LoginModal/LoginModal"; // Импортируем модальное окно
 import Loader from "../../Components/Loader/Loader";
 import MatchFilter from "../../Components/MatchFilter/MatchFilter";
-import { ThemeButton } from "../../Components/ThemeButton/ThemeButton";
+import ThemeButton from "../../Components/ThemeButton/ThemeButton";
 
 export const MatchToday = () => {
   const [matches, setMatches] = useState<any[]>([]);

@@ -13,7 +13,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // Получаем тему из localStorage при первом рендере
   const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-  const [theme, setTheme] = useState<'light' | 'dark'>(savedTheme || 'light'); // По умолчанию 'light'
+  const [theme, setTheme] = useState<'light' | 'dark'>(savedTheme || 'dark'); // По умолчанию 'light'
 
   // Сохраняем тему в localStorage при её изменении
   useEffect(() => {

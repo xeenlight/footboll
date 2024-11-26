@@ -1,20 +1,25 @@
+// ThemeButton.tsx
+import React from "react";
+import { useTheme } from "../../Theme/themeContext"; // Используем контекст для переключения темы
 import { StyledThemeButton } from "./ThemeButton.style";
-import { useTheme } from "../../Theme/themeContext";
 
-export const ThemeButton = () => {
-  const { toggleTheme, theme } = useTheme(); 
+
+const ThemeButton: React.FC = () => {
+  const { toggleTheme, theme } = useTheme(); // Получаем функцию и состояние темы из контекста
+
   return (
-    <StyledThemeButton>
-      <button className="Theme" onClick={toggleTheme}>
-        <img
-          src={
-            theme === "dark"
-              ? "https://cdn3.iconfinder.com/data/icons/feather-5/24/sun-256.png"
-              : "https://cdn3.iconfinder.com/data/icons/meteocons/512/moon-black-512.png"
-          }
-          alt="Theme Icon"
-        />
-      </button>
+    <StyledThemeButton className="Theme" onClick={toggleTheme}>
+      {/* Условно меняем картинку в зависимости от темы */}
+      <img
+        src={
+          theme === "dark"
+            ? "https://cdn3.iconfinder.com/data/icons/feather-5/24/sun-256.png"
+            : "https://cdn3.iconfinder.com/data/icons/meteocons/512/moon-black-512.png"
+        }
+        alt="Theme Icon"
+      />
     </StyledThemeButton>
   );
 };
+
+export default ThemeButton;

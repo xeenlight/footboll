@@ -9,6 +9,7 @@ import { StyledMatchPage } from '../../Theme/matchPage';
 import { LoginModal } from "../../Components/LoginModal/LoginModal"; // Импортируем модальное окно
 import Loader from "../../Components/Loader/Loader";
 import MatchFilter from "../../Components/MatchFilter/MatchFilter";
+import ThemeButton from "../../Components/ThemeButton/ThemeButton";
 
 export const SerieA = () => {
   const [matches, setMatches] = useState<any[]>([]);
@@ -142,6 +143,7 @@ export const SerieA = () => {
       <Header />
       <StyledMatchPage>
         <h1>Serie A</h1>
+        <ThemeButton/>
         <MatchFilter filter={filter} onFilterChange={filterMatches} />
         <ul>
           {filteredMatches.map((match) => {

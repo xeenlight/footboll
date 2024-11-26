@@ -104,18 +104,6 @@ export const Header = () => {
 
       {/* Кнопки входа и регистрации */}
       <div className="Buttons">
-      <button className="Theme" onClick={toggleTheme}>
-          {/* Условно меняем картинку в зависимости от темы */}
-          <img
-            src={
-              theme === "dark"
-                ? "https://cdn3.iconfinder.com/data/icons/feather-5/24/sun-256.png"
-                : "https://cdn3.iconfinder.com/data/icons/meteocons/512/moon-black-512.png"
-            }
-            alt="Theme Icon"
-        
-          />
-        </button>
         {userData ? (
           <>
             <div className="Login">{userData.username}</div>

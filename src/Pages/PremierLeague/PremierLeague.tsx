@@ -9,6 +9,7 @@ import { StyledMatchPage } from '../../Theme/matchPage';
 import { LoginModal } from "../../Components/LoginModal/LoginModal"; // Импортируем модальное окно
 import Loader from "../../Components/Loader/Loader";
 import MatchFilter from "../../Components/MatchFilter/MatchFilter";
+import ThemeButton from "../../Components/ThemeButton/ThemeButton";
 
 export const PremierLeague = () => {
   const [matches, setMatches] = useState<any[]>([]);
@@ -143,6 +144,7 @@ export const PremierLeague = () => {
       <Header />
       <StyledMatchPage>
         <h1>Premier League</h1>
+        <ThemeButton/>
 
         <MatchFilter filter={filter} onFilterChange={filterMatches} />
 

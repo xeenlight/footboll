@@ -5,7 +5,7 @@ export const StyledFooter = styled.div`
   width: 100%;
   position: fixed;
   bottom: 0;
-  padding: 20px;
+  padding: 15px 15px;
   background: ${({ theme }) => theme.headerFooter};
   color: ${colors.colorWhite};
   font-size: 18px;
@@ -51,7 +51,7 @@ export const StyledFooter = styled.div`
   }
 
   img {
-    width: 35px;
+    width: 30px;
     height: auto;
     filter: brightness(0) invert(1);
   }

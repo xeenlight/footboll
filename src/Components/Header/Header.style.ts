@@ -7,7 +7,7 @@ export const StyledHeader = styled.div`
   top: 0;
   left: 0;
   background: ${({ theme }) => theme.headerFooter};
-  padding: 15px 20px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,26 +29,21 @@ export const StyledHeader = styled.div`
     align-items: center;
     gap: 10px;
     .Theme {
-  width: 39px;
-  height: 39px;
-  border-radius: 50%;
-  background: ${({ theme }) => theme.theme};
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.Theme img {
-  width: 24px;
-  height: 24px;
-  filter: invert(1);
-}
-
-
-
-
-
+      width: 39px;
+      height: 39px;
+      border-radius: 50%;
+      background: ${({ theme }) => theme.theme};
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .Theme img {
+      width: 24px;
+      height: 24px;
+      filter: invert(1);
+    }
     .Login,
     .Register {
       width: 120px;
@@ -122,7 +117,8 @@ export const StyledHeader = styled.div`
       }
 
       a:hover {
-        color: ${({ theme }) => theme.activetext};/* Цвет ссылки при наведении */
+        color: ${({ theme }) =>
+          theme.activetext}; /* Цвет ссылки при наведении */
       }
     }
   }

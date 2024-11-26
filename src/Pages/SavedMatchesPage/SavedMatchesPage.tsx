@@ -8,6 +8,7 @@ import { StyledMatchPage } from '../../Theme/matchPage';
 import { useState } from "react";
 import { LoginModal } from "../../Components/LoginModal/LoginModal";
 import { RegisterModal } from "../../Components/RegisterModal/RegisterModal"; // Импортируем RegisterModal
+import ThemeButton from "../../Components/ThemeButton/ThemeButton";
 
 const SavedMatchesPage = () => {
   const dispatch = useDispatch();
@@ -91,6 +92,8 @@ const SavedMatchesPage = () => {
       <Header />
       <StyledMatchPage>
         <h1>Your saved matches</h1>
+        <ThemeButton/>
+
         {!currentUser ? (
           <div className="ButtonConteiner">
             <p className="save">Login to your account to save matches </p>
