@@ -6,10 +6,10 @@ import { GlobalStyle } from './Theme/globalStyle.ts';
 import { Provider } from 'react-redux';
 import store from './Store/store.ts';
 import { ThemeProvider } from 'styled-components'; // Импортируем ThemeProvider из styled-components
-import { ThemeProvider as AppThemeProvider, useTheme } from '../src/Theme/ThemeContext.tsx'; // Импортируем ваш контекст
+import { ThemeProvider as AppThemeProvider, useTheme } from '../src/Theme/themeContext.tsx'; // Импортируем ваш контекст
 
 const Root = () => {
-  const { colors } = useTheme(); // Получаем цвета из вашего контекста темы
+  const { colors } = useTheme();
 
   return (
     <ThemeProvider theme={colors}>
@@ -22,7 +22,7 @@ const Root = () => {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <AppThemeProvider> {/* Оборачиваем в ваш контекст провайдера темы */}
+      <AppThemeProvider> 
         <Root />
       </AppThemeProvider>
     </Provider>

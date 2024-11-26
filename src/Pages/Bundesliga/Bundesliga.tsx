@@ -8,6 +8,7 @@ import { StyledMatchPage } from '../../Theme/matchPage';
 
 import { LoginModal } from '../../Components/LoginModal/LoginModal'; // Импортируем модальное окно
 import Loader from '../../Components/Loader/Loader';
+import MatchFilter from '../../Components/MatchFilter/MatchFilter';
 
 export const Bundesliga = () => {
   const [matches, setMatches] = useState<any[]>([]);
@@ -50,10 +51,6 @@ export const Bundesliga = () => {
     }
   };
 
-  // Обработчик для клика по кнопкам фильтрации
-  const handleButtonClick = (status: string) => {
-    filterMatches(status);
-  };
 
   // Логика для изменения фона
   const handleMouseEnter = (homeImgUrl: any, awayImgUrl: any) => {
@@ -140,44 +137,7 @@ export const Bundesliga = () => {
       <StyledMatchPage>
         <h1>Bundesliga</h1>
 
-        <div className="filter-buttons">
-          <button
-            onClick={() => handleButtonClick('in-play')}
-            className={filter === 'in-play' ? 'active' : ''}
-          >
-            In live
-          </button>
-          <button
-            onClick={() => handleButtonClick('finished')}
-            className={filter === 'finished' ? 'active' : ''}
-          >
-            Finished
-          </button>
-          <button
-            onClick={() => handleButtonClick('draw')}
-            className={filter === 'draw' ? 'active' : ''}
-          >
-            Draw
-          </button>
-          <button
-            onClick={() => handleButtonClick('paused')}
-            className={filter === 'paused' ? 'active' : ''}
-          >
-            Pause
-          </button>
-          <button
-            onClick={() => handleButtonClick('soon')}
-            className={filter === 'soon' ? 'active' : ''}
-          >
-            Soon
-          </button>
-          <button
-            onClick={() => handleButtonClick('postponed')}
-            className={filter === 'postponed' ? 'active' : ''}
-          >
-            Postponed
-          </button>
-        </div>
+        <MatchFilter filter={filter} onFilterChange={filterMatches} />
 
         <ul>
           {filteredMatches.map((match) => {

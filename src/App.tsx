@@ -31,59 +31,59 @@ function App() {
       element: <MainPage />,
     },
     {
-      path: "/1",
+      path: "/ChampionsLeague",
       element: <ChampionsLeague />,
     },
     {
-      path: "/2",
+      path: "/PrimeiraLiga",
       element: <PrimeiraLiga />,
     },
     {
-      path: "/3",
+      path: "/PremierLeague",
       element: < PremierLeague/>,
     },
     {
-      path: "/4",
+      path: "/Eredivisie",
       element: < Eredivisie/>,
     },
     {
-      path: "/5",
+      path: "/Bundesliga",
       element: < Bundesliga/>,
     },
     {
-      path: "/6",
+      path: "/Ligue1",
       element: <Ligue1/>,
     },
     {
-      path: "/7",
+      path: "/SerieA",
       element: <SerieA/>,
     },
     {
-      path: "/8",
+      path: "/LaLiga",
       element: <LaLiga/>,
     },
     {
-      path: "/9",
+      path: "/Championship",
       element: <Championship/>,
     },
     {
-      path: "/10",
+      path: "/SerieABr",
       element: <SerieABr/>,
     },
     {
-      path: "/11",
+      path: "/Worldcup",
       element: <Worldcup/>,
     },
     {
-      path: "/12",
+      path: "/European",
       element: <European/>,
     },
     {
-      path: "/13",
+      path: "/MatchToday",
       element: <MatchToday/>,
     },
     {
-      path: "/100",
+      path: "/SavedMatchesPage",
       element: <SavedMatchesPage />,
     },
   ]);

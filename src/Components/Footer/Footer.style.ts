@@ -27,8 +27,8 @@ export const StyledFooter = styled.div`
     justify-content: center;
   }
 
-  /* Для мобильных устройств (адаптивность) */
-  @media (max-width: 800pxpx) {
+
+  @media (max-width: 800px) {
     flex-direction: column;
     gap: 10px;
     text-align: center;
@@ -54,5 +54,25 @@ export const StyledFooter = styled.div`
     width: 35px;
     height: auto;
     filter: brightness(0) invert(1);
+  }
+
+
+  @media (max-width: 470px) {
+    width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  background: ${({ theme }) => theme.headerFooter};
+  color: ${colors.colorWhite};
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  text-align: center;
   }
 `;

@@ -57,8 +57,7 @@ export const Header = () => {
   return (
     <StyledHeader>
       <h1>Football Stats</h1>
-      
-
+    
       <div className="burger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         <span className="burger-bar"></span>
         <span className="burger-bar"></span>
@@ -71,10 +70,10 @@ export const Header = () => {
             <a href="/">Football Leagues</a>
           </li>
           <li>
-            <a href="/13">Match Today</a>
+            <a href="/MatchToday">Match Today</a>
           </li>
           <li>
-            <a href="/100">Save Match</a>
+            <a href="/SavedMatchesPage">Save Match</a>
           </li>
         </ul>
 

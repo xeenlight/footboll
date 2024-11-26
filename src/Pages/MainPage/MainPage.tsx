@@ -14,76 +14,76 @@ export const MainPage = () => {
             image="https://crests.football-data.org/CL.png"
             title="Champions League"
             description="Europe"
-            link="/1"
+            link="/ChampionsLeague"
           />
           <Card
             image="https://crests.football-data.org/PPL.png"
             title="Primeira Liga"
             description="Portugal"
-            link="/2"
+            link="/PrimeiraLiga"
           />
           <Card
             image="https://crests.football-data.org/PL.png"
             title="Premier League"
             description="England"
-            link="/3"
+            link="/PremierLeague"
           />
 
           <Card
             image="https://crests.football-data.org/ED.png"
             title="Eredivisie"
             description="Netherlands"
-            link="/4"
+            link="/Eredivisie"
           />
           <Card
             image="https://crests.football-data.org/BL1.png"
             title="Bundesliga"
             description="Germany"
-            link="/5"
+            link="/Bundesliga"
           />
           <Card
             image="https://crests.football-data.org/FL1.png"
             title="Ligue 1"
             description="France"
-            link="/6"
+            link="/Ligue1"
           />
 
           <Card
             image="https://crests.football-data.org/SA.png"
             title="Serie A"
             description="Italy"
-            link="/7"
+            link="/SerieA"
           />
           <Card
             image="https://crests.football-data.org/laliga.png"
             title="La Liga"
             description="Spain"
-            link="/8"
+            link="/LaLiga"
           />
           <Card
             image="https://crests.football-data.org/ELC.png"
             title="Championship"
             description="England"
-            link="/9"
+            link="/Championship"
           />
 
           <Card
             image="https://crests.football-data.org/bsa.png"
             title="Serie A"
             description="Brazil"
-            link="/10"
+            link="/SerieABr"
           />
           <Card
             image="https://crests.football-data.org/qatar.png"
             title="Worldcup"
             description="World"
-            link="/11"
+            link="/Worldcup"
           />
           <Card
             image="https://crests.football-data.org/ec.png"
             title="Europe"
             description="European Championships"
-            link="/12"
+            link="/European"
           />
         </div>
       </StyledMainPage>
