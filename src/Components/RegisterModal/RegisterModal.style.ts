@@ -29,7 +29,8 @@ export const StyledRegisterModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%); 
   background:   ${({ theme }) => theme.bgcModal};
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
   padding: 20px;
   border-radius: 15px;
   z-index: 1000;
@@ -78,7 +79,7 @@ export const StyledRegisterModal = styled.div`
   button {
     width: 100%;
     padding: 15px;
-    background:  ${colors.bgcButtonCursor};
+    background:  ${({ theme }) => theme.bgcButtonCursor};
     color:  ${colors.colorWhite};
     border: none;
     border-radius: 8px;
@@ -103,7 +104,7 @@ export const StyledRegisterModal = styled.div`
   .ExitButton {
     width: 50px;
     height: 50px;
-    background: ${colors.bgcButtonCursor};
+    background: ${({ theme }) => theme.bgcButtonCursor};
     border-radius: 50%;
     z-index: 1100;
     position: absolute;

@@ -200,6 +200,7 @@ export const StyledHeader = styled.div`
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: bold;
+      background: ${({ theme }) => theme.bgcButtonCursor};
     }
     .Buttons {
       display: none;
@@ -226,7 +227,7 @@ export const StyledHeader = styled.div`
         transition: all 0.3s ease;
 
         &.Login {
-          background: ${colors.bgcButtonCursor};
+          background: ${({ theme }) => theme.bgcButtonCursor};
           color: ${colors.colorWhite};
           border: none;
           border-radius: 8px;

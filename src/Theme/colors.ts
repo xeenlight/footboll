@@ -15,13 +15,13 @@ export const colors = {
 export const lightColors = {
     bgc: "rgb(231 230 230)",
     matchIcon: "rgb(255,255,255)",
-    headerFooter: "rgb(20 197 23)",
+    headerFooter: "rgb(52 151 182)",
     text: "rgb(0,20,30)",
     matchitemBgc: "rgb(196 239 253)",
     bgcButton: "rgb(15,45,55)",
     bgcModal: "rgb(238,238,238)",
     activeFiltr: "rgb(20 197 23)",
-    disableFiltr: "rgb(83 115 125)",
+    disableFiltr: "    rgb(74 197 235)",
     activetext:"rgb(246 255 0)",
 
 
@@ -31,7 +31,7 @@ export const lightColors = {
     active: "rgb(255,0,70)",
     colorBlack: "rgb(0,0,0)",
     bgcColorBlack: "rgb(238,238,238)",
-    bgcButtonCursor: "rgb(83,115,125)",
+    bgcButtonCursor: "rgb(74 197 235)",
   };
   
   export const darkColors = {
@@ -45,6 +45,7 @@ export const lightColors = {
     activeFiltr: "rgb(255,0,70)",
     disableFiltr: "rgb(15,45,55)",
     activetext:"rgb(255,0,70)",
+    
 
 
     colorWhite: "rgb(255,255,255)",

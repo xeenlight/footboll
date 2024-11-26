@@ -145,7 +145,7 @@ export const MatchToday = () => {
     <>
       <Header />
       <StyledMatchPage>
-        <h1>FIFA World Cup</h1>
+        <h1>Matches</h1>
 
         <div className="filter-buttons">
           <button

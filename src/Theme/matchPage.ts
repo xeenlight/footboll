@@ -263,7 +263,7 @@ export const StyledMatchPage = styled.div`
   }
 
   .score {
-    padding: 5px calc(3.1vw + 50px);
+    padding: 5px calc(3.1vw + 40px);
     font-size: 20px;
     font-weight: bold;
     border-radius: 5px;
