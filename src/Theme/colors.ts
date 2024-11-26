@@ -21,9 +21,9 @@ export const lightColors = {
     bgcButton: "rgb(15,45,55)",
     bgcModal: "rgb(238,238,238)",
     activeFiltr: "rgb(20 197 23)",
-    disableFiltr: "    rgb(74 197 235)",
+    disableFiltr: "rgb(74 197 235)",
     activetext:"rgb(246 255 0)",
-
+    theme: "rgb(15,45,55)",
 
 
 
@@ -45,7 +45,7 @@ export const lightColors = {
     activeFiltr: "rgb(255,0,70)",
     disableFiltr: "rgb(15,45,55)",
     activetext:"rgb(255,0,70)",
-    
+    theme: "rgb(74 197 235)",
 
 
     colorWhite: "rgb(255,255,255)",

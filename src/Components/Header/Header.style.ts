@@ -29,12 +29,25 @@ export const StyledHeader = styled.div`
     align-items: center;
     gap: 10px;
     .Theme {
-      width: 39px;
-      height: 39px;
-      border-radius: 50%;
-      background: ${({ theme }) => theme.disableFiltr};
-      cursor: pointer;
-    }
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.theme};
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Theme img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+}
+
+
+
+
 
     .Login,
     .Register {
