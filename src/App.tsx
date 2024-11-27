@@ -23,7 +23,7 @@ function App() {
   const dispatch = useDispatch<AppDispatch>(); // Типизируем dispatch
 
   useEffect(() => {
-    dispatch(checkUser()); // Вызов checkUser с правильным типом dispatch
+    dispatch(checkUser()); 
   }, [dispatch]);
 
   const router = createBrowserRouter([

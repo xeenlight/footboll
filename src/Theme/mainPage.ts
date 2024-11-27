@@ -8,8 +8,7 @@ export const StyledMainPage = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 100px 0;
-
+padding: 100px 0 calc(-6.3vw + 220px);
 
 h1{
   font-size: 50px;
