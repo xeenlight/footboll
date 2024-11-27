@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AppDispatch } from '../store'; // Импортируем тип Dispatch
 
 interface User {
   useremail: string;
@@ -26,16 +27,13 @@ const userSlice = createSlice({
       const newUser = action.payload;
       const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
       
-      // Добавляем нового пользователя в список существующих пользователей
       const updatedUsers = [...existingUsers, newUser];
       localStorage.setItem('users', JSON.stringify(updatedUsers));
-      
-      // Сохраняем нового пользователя как текущего в localStorage
       localStorage.setItem('currentUser', JSON.stringify(newUser));
       
       state.user = newUser;
       state.isAuthenticated = true;
-      state.savedMatches = []; // Можете добавить сохраненные матч и сюда, если они есть
+      state.savedMatches = [];
     },
     login: (state, action: PayloadAction<User>) => {
       const storedUser = JSON.parse(localStorage.getItem('users') || '[]')
@@ -46,7 +44,6 @@ const userSlice = createSlice({
         const savedMatches = JSON.parse(localStorage.getItem(storedUser.useremail) || '[]');
         state.savedMatches = savedMatches;
         
-        // Сохраняем авторизованного пользователя в localStorage
         localStorage.setItem('currentUser', JSON.stringify(storedUser));
       }
     },
@@ -54,8 +51,6 @@ const userSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
       state.savedMatches = [];
-      
-      // Удаляем текущего пользователя из localStorage
       localStorage.removeItem('currentUser');
     },
     setUser: (state, action: PayloadAction<User | null>) => {
@@ -83,11 +78,12 @@ const userSlice = createSlice({
   },
 });
 
+// Экспортируем действия слайса
 export const { register, login, logout, setUser, saveMatch, removeMatch } = userSlice.actions;
 
-// Экспорт функции checkUser
+// Экспортируем функцию checkUser с типизацией для dispatch
 export const checkUser = () => {
-  return (dispatch: Dispatch) => {
+  return (dispatch: AppDispatch) => {
     const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
     if (user) {
       dispatch(setUser(user)); // Устанавливаем текущего пользователя из localStorage

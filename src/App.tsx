@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ChampionsLeague} from "./Pages/ChampionsLeague/ChampionsLeague";
+import { ChampionsLeague } from "./Pages/ChampionsLeague/ChampionsLeague";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { checkUser } from './Store/store';
+import { checkUser } from './Store/store'; // Импортируем checkUser
 import SavedMatchesPage from "./Pages/SavedMatchesPage/SavedMatchesPage";
 import { MainPage } from "./Pages/MainPage/MainPage";
 import { PrimeiraLiga } from "./Pages/PrimeiraLiga/PrimeiraLiga";
@@ -17,12 +17,13 @@ import { SerieABr } from "./Pages/SerieABr/SerieABr";
 import { Worldcup } from "./Pages/Worldcup/Worldcup";
 import { European } from "./Pages/Europe/European";
 import { MatchToday } from "./Pages/MatchToday/MatchToday";
+import { AppDispatch } from './Store/store'; // Импортируем тип Dispatch
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>(); // Типизируем dispatch
 
   useEffect(() => {
-    dispatch(checkUser());
+    dispatch(checkUser()); // Вызов checkUser с правильным типом dispatch
   }, [dispatch]);
 
   const router = createBrowserRouter([
@@ -40,47 +41,47 @@ function App() {
     },
     {
       path: "/PremierLeague",
-      element: < PremierLeague/>,
+      element: <PremierLeague />,
     },
     {
       path: "/Eredivisie",
-      element: < Eredivisie/>,
+      element: <Eredivisie />,
     },
     {
       path: "/Bundesliga",
-      element: < Bundesliga/>,
+      element: <Bundesliga />,
     },
     {
       path: "/Ligue1",
-      element: <Ligue1/>,
+      element: <Ligue1 />,
     },
     {
       path: "/SerieA",
-      element: <SerieA/>,
+      element: <SerieA />,
     },
     {
       path: "/LaLiga",
-      element: <LaLiga/>,
+      element: <LaLiga />,
     },
     {
       path: "/Championship",
-      element: <Championship/>,
+      element: <Championship />,
     },
     {
       path: "/SerieABr",
-      element: <SerieABr/>,
+      element: <SerieABr />,
     },
     {
       path: "/Worldcup",
-      element: <Worldcup/>,
+      element: <Worldcup />,
     },
     {
       path: "/European",
-      element: <European/>,
+      element: <European />,
     },
     {
       path: "/MatchToday",
-      element: <MatchToday/>,
+      element: <MatchToday />,
     },
     {
       path: "/SavedMatchesPage",

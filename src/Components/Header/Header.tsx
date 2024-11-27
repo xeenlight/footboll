@@ -15,7 +15,7 @@ export const Header = () => {
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null); // Типизировано
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Состояние для бургер-меню
-  const { toggleTheme, theme } = useTheme(); // Получаем текущую тему
+  const { toggleTheme } = useTheme(); // Получаем текущую тему
 
 
   useEffect(() => {
