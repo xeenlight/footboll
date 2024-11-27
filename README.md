@@ -4,7 +4,8 @@
 - Vite
 - TypeScript
 - StyledCompanents
-- Redux toolkid 
+- Redux toolkid
+- API
 
 ## Championships
 - Brazil : Série A
@@ -20,6 +21,12 @@
 - Spain : Primera Division
 - World : FIFA World Cup
 
+  ## Upcoming football matches
+- Past matches
+- Match results
+- Canceled matches
+- Matches on pause
+
 ### How to Run
 
 1. Clone the repository:
@@ -27,12 +34,17 @@
    ```bash
    git clone https://github.com/xeenlight/footboll.git
 
-2. Install dependencies:
+2. Go to folder:
+
+   ```bash
+   cd football
+
+3. Install dependencies:
 
    ```bash
    npm install
 
-3. Start the development server:
+4. Start the development server:
    ```bash
    npm run dev
 
