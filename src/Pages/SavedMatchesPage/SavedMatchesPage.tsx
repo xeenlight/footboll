@@ -46,6 +46,11 @@ const SavedMatchesPage = () => {
   // Функция для удаления матча
   const handleRemoveMatch = (matchId: string) => {
     dispatch(removeMatch({ id: matchId }));
+
+    // Если после удаления все матчи удалены, очищаем фон
+    if (savedMatches.length === 1) {
+      handleMouseLeave(); // Очищаем фон при удалении последнего матча
+    }
   };
 
   const openLoginModal = () => {
@@ -92,7 +97,7 @@ const SavedMatchesPage = () => {
       <Header />
       <StyledMatchPage>
         <h1>Your saved matches</h1>
-        <ThemeButton/>
+        <ThemeButton />
 
         {!currentUser ? (
           <div className="ButtonConteiner">
@@ -110,9 +115,7 @@ const SavedMatchesPage = () => {
             {savedMatches.length === 0 ? (
               <div className="ButtonConteiner">
                 <p className="save">Find interesting matches</p>
-                
                 <a href="/"><button className="ButtonSaveLogin">Match</button></a>
-                
               </div>
             ) : (
               savedMatches.map((match) => {
@@ -128,8 +131,7 @@ const SavedMatchesPage = () => {
                     ? "in-play"
                     : match.status === "TIMED"
                     ? "timed"
-                    : match.status === "FINISHED" &&
-                      match.score?.winner === "DRAW"
+                    : match.status === "FINISHED" && match.score?.winner === "DRAW"
                     ? "finished-draw"
                     : match.status === "FINISHED"
                     ? winnerClass
@@ -144,10 +146,7 @@ const SavedMatchesPage = () => {
                     key={match.id}
                     className={`match-item ${statusClass}`}
                     onMouseEnter={() =>
-                      handleMouseEnter(
-                        match.homeTeam.crest,
-                        match.awayTeam.crest
-                      )
+                      handleMouseEnter(match.homeTeam.crest, match.awayTeam.crest)
                     }
                     onMouseLeave={handleMouseLeave}
                   >
