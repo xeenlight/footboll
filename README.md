@@ -6,7 +6,6 @@
 - StyledCompanents
 - Redux toolkid
 - API
-- https://footboll.vercel.app/
   
  # vercel
 - https://footboll.vercel.app/
